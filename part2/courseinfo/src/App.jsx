@@ -1,6 +1,10 @@
 const Header = ({ courseName }) => <h3>{courseName}</h3>;
 
-const Total = ({ sum }) => <p>Number of exercises {sum}</p>;
+const Total = ({ sum }) => (
+  <p>
+    <b>Total of {sum} exercises</b>
+  </p>
+);
 
 const Part = ({ part }) => (
   <p>
@@ -8,13 +12,18 @@ const Part = ({ part }) => (
   </p>
 );
 
-const Content = ({ parts }) => (
-  <>
-    {parts.map((part) => (
-      <Part key={part.id} part={part} />
-    ))}
-  </>
-);
+const Content = ({ parts }) => {
+  let sum = 0;
+  return (
+    <>
+      {parts.map((part) => {
+        sum += part.exercises;
+        return <Part key={part.id} part={part} />;
+      })}
+      <Total sum={sum} />
+    </>
+  );
+};
 
 const Course = ({ course }) => {
   console.log("Course works for return before map");
