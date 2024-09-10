@@ -1,5 +1,49 @@
 import { useState } from "react";
 
+const Filter = ({ newSearch, handleSearchChange }) => (
+  <div>
+    filter shown with <input value={newSearch} onChange={handleSearchChange} />
+  </div>
+);
+const PersonForm = ({
+  addPerson,
+  newName,
+  handleNameChange,
+  newNumber,
+  handleNumberChange,
+}) => (
+  <form onSubmit={addPerson}>
+    <div>
+      name:{" "}
+      <input
+        placeholder="enter name here"
+        value={newName}
+        onChange={handleNameChange}
+      />
+    </div>
+    <div>
+      number:{" "}
+      <input
+        placeholder="enter phone number here"
+        value={newNumber}
+        onChange={handleNumberChange}
+        type="tel"
+      />
+    </div>
+
+    <div>
+      <button type="submit">add</button>
+    </div>
+  </form>
+);
+
+const Persons = ({ personsToShow }) =>
+  personsToShow.map((person, index) => (
+    <li key={index}>
+      {person.name} {person.number}
+    </li>
+  ));
+
 const App = () => {
   const [persons, setPersons] = useState([
     { name: "Arto Hellas", number: "040-123456", id: 1 },
@@ -40,40 +84,19 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>
-        filter shown with{" "}
-        <input value={newSearch} onChange={handleSearchChange} />
-      </div>
-      <h2>add a new</h2>
-      <form onSubmit={addPerson}>
-        <div>
-          name:{" "}
-          <input
-            placeholder="enter name here"
-            value={newName}
-            onChange={handleNameChange}
-          />
-        </div>
-        <div>
-          number:{" "}
-          <input
-            placeholder="enter phone number here"
-            value={newNumber}
-            onChange={handleNumberChange}
-            type="tel"
-          />
-        </div>
 
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
-      <h2>Numbers</h2>
-      {personsToShow.map((person, index) => (
-        <li key={index}>
-          {person.name} {person.number}
-        </li>
-      ))}
+      <Filter newSearch={newSearch} handleSearchChange={handleSearchChange} />
+
+      <h3>add a new</h3>
+      <PersonForm
+        addPerson={addPerson}
+        newName={newName}
+        handleNameChange={handleNameChange}
+        newNumber={newNumber}
+        handleNumberChange={handleNumberChange}
+      />
+      <h3>Numbers</h3>
+      <Persons personsToShow={personsToShow} />
     </div>
   );
 };
