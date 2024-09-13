@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import personService from "./services/persons";
 
 const Filter = ({ newSearch, handleSearchChange }) => (
   <div>
@@ -38,10 +38,11 @@ const PersonForm = ({
   </form>
 );
 
-const Persons = ({ personsToShow }) =>
-  personsToShow.map((person, index) => (
-    <li key={index}>
+const Persons = ({ personsToShow, handleDelete }) =>
+  personsToShow.map((person) => (
+    <li key={person.id}>
       {person.name} {person.number}
+      <button onClick={() => handleDelete(person.id)}>delete</button>
     </li>
   ));
 
@@ -53,8 +54,8 @@ const App = () => {
 
   useEffect(() => {
     console.log("using effect to fetch persons data");
-    axios.get("http://localhost:3001/persons").then((response) => {
-      setPersons(response.data);
+    personService.getAll().then((initialPersons) => {
+      setPersons(initialPersons);
     });
   }, []);
 
@@ -70,16 +71,31 @@ const App = () => {
       alert(`${newName} is already added to phonebook`);
     } else {
       const newPerson = { name: newName, number: newNumber };
-      axios
-        .post("http://localhost:3001/persons", newPerson)
-        .then((response) => {
-          console.log("new person added successfully");
-          setPersons(persons.concat(response.data));
-          setNewName("");
-          setNewNumber("");
+      personService.create(newPerson).then((addedPerson) => {
+        console.log(`${addedPerson.name} created successfully`);
+        setPersons(persons.concat(addedPerson));
+        setNewName("");
+        setNewNumber("");
+      });
+    }
+  };
+
+  const handleDelete = (id) => {
+    const persontoDelete = persons.find((person) => person.id === id);
+    if (window.confirm(`Delete ${persontoDelete.name} ?`)) {
+      personService
+        .deletePerson(id)
+        .then((deletedPerson) => {
+          console.log(`sucsesfully deleted ${deletedPerson.name}`);
+          setPersons(persons.filter((person) => person.id !== id));
+        })
+        .catch(() => {
+          alert`the person${persontoDelete.name} has already been deleted`;
+          setPersons(persons.filter((person) => person.id !== id));
         });
     }
   };
+
   const handleNameChange = (event) => {
     setNewName(event.target.value);
   };
@@ -105,7 +121,7 @@ const App = () => {
         handleNumberChange={handleNumberChange}
       />
       <h3>Numbers</h3>
-      <Persons personsToShow={personsToShow} />
+      <Persons personsToShow={personsToShow} handleDelete={handleDelete} />
     </div>
   );
 };
