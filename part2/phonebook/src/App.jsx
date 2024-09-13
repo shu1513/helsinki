@@ -70,9 +70,14 @@ const App = () => {
       alert(`${newName} is already added to phonebook`);
     } else {
       const newPerson = { name: newName, number: newNumber };
-      setPersons(persons.concat(newPerson));
-      setNewName("");
-      setNewNumber("");
+      axios
+        .post("http://localhost:3001/persons", newPerson)
+        .then((response) => {
+          console.log("new person added successfully");
+          setPersons(persons.concat(response.data));
+          setNewName("");
+          setNewNumber("");
+        });
     }
   };
   const handleNameChange = (event) => {
