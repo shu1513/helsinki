@@ -67,8 +67,33 @@ const App = () => {
 
   const addPerson = (event) => {
     event.preventDefault();
-    if (persons.map((person) => person.name).includes(newName)) {
+    if (
+      persons.find(
+        (person) => person.name === newName && person.number === newNumber
+      )
+    ) {
       alert(`${newName} is already added to phonebook`);
+    } else if (
+      persons.find(
+        (person) => person.name === newName && person.number !== newNumber
+      )
+    ) {
+      const foundPerson = persons.find((person) => person.name === newName);
+
+      if (
+        window.confirm(
+          `${foundPerson.name} is already added to phonebook, replace the older number with the new one?`
+        )
+      ) {
+        const updatedPerson = { ...foundPerson, number: newNumber };
+        personService.update(updatedPerson).then((returnedPerson) => {
+          setPersons(
+            persons.map((person) =>
+              person.id !== returnedPerson.id ? person : returnedPerson
+            )
+          );
+        });
+      }
     } else {
       const newPerson = { name: newName, number: newNumber };
       personService.create(newPerson).then((addedPerson) => {
