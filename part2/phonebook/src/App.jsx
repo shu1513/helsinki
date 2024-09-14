@@ -1,50 +1,8 @@
 import { useState, useEffect } from "react";
 import personService from "./services/persons";
-
-const Filter = ({ newSearch, handleSearchChange }) => (
-  <div>
-    filter shown with <input value={newSearch} onChange={handleSearchChange} />
-  </div>
-);
-const PersonForm = ({
-  addPerson,
-  newName,
-  handleNameChange,
-  newNumber,
-  handleNumberChange,
-}) => (
-  <form onSubmit={addPerson}>
-    <div>
-      name:{" "}
-      <input
-        placeholder="enter name here"
-        value={newName}
-        onChange={handleNameChange}
-      />
-    </div>
-    <div>
-      number:{" "}
-      <input
-        placeholder="enter phone number here"
-        value={newNumber}
-        onChange={handleNumberChange}
-        type="tel"
-      />
-    </div>
-
-    <div>
-      <button type="submit">add</button>
-    </div>
-  </form>
-);
-
-const Persons = ({ personsToShow, handleDelete }) =>
-  personsToShow.map((person) => (
-    <li key={person.id}>
-      {person.name} {person.number}
-      <button onClick={() => handleDelete(person.id)}>delete</button>
-    </li>
-  ));
+import Filter from "./components/Filter";
+import PersonForm from "./components/PersonForm";
+import Persons from "./components/Persons";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -65,26 +23,27 @@ const App = () => {
         person.name.toLowerCase().startsWith(newSearch.toLowerCase())
       );
 
+  const isPersonDuplicate = (name, number) => {
+    return persons.some(
+      (person) => person.name === name && person.number === number
+    );
+  };
+
+  const isNumberDifferent = (name, number) => {
+    return persons.some(
+      (person) => person.name === name && person.number !== number
+    );
+  };
+
   const addPerson = (event) => {
     event.preventDefault();
-    if (
-      persons.find(
-        (person) => person.name === newName && person.number === newNumber
-      )
-    ) {
+    if (isPersonDuplicate(newName, newNumber)) {
       alert(`${newName} is already added to phonebook`);
-    } else if (
-      persons.find(
-        (person) => person.name === newName && person.number !== newNumber
-      )
-    ) {
+      return;
+    }
+    if (isNumberDifferent(newName, newNumber)) {
       const foundPerson = persons.find((person) => person.name === newName);
-
-      if (
-        window.confirm(
-          `${foundPerson.name} is already added to phonebook, replace the older number with the new one?`
-        )
-      ) {
+      if (window.confirm(`Replace ${foundPerson.name}'s number?`)) {
         const updatedPerson = { ...foundPerson, number: newNumber };
         personService.update(updatedPerson).then((returnedPerson) => {
           setPersons(
@@ -92,17 +51,22 @@ const App = () => {
               person.id !== returnedPerson.id ? person : returnedPerson
             )
           );
+          setNewName("");
+          setNewNumber("");
         });
       }
-    } else {
-      const newPerson = { name: newName, number: newNumber };
-      personService.create(newPerson).then((addedPerson) => {
-        console.log(`${addedPerson.name} created successfully`);
-        setPersons(persons.concat(addedPerson));
-        setNewName("");
-        setNewNumber("");
-      });
+      return;
     }
+    createNewPerson();
+  };
+
+  const createNewPerson = () => {
+    const newPerson = { name: newName, number: newNumber };
+    personService.create(newPerson).then((addedPerson) => {
+      setPersons(persons.concat(addedPerson));
+      setNewName("");
+      setNewNumber("");
+    });
   };
 
   const handleDelete = (id) => {
