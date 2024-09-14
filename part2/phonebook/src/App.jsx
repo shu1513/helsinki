@@ -3,12 +3,16 @@ import personService from "./services/persons";
 import Filter from "./components/Filter";
 import PersonForm from "./components/PersonForm";
 import Persons from "./components/Persons";
+import Notification from "./components/Notification";
+import Error from "./components/Error";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [newSearch, setNewSearch] = useState("");
+  const [notifyMessage, setNotifyMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     console.log("using effect to fetch persons data");
@@ -45,15 +49,26 @@ const App = () => {
       const foundPerson = persons.find((person) => person.name === newName);
       if (window.confirm(`Replace ${foundPerson.name}'s number?`)) {
         const updatedPerson = { ...foundPerson, number: newNumber };
-        personService.update(updatedPerson).then((returnedPerson) => {
-          setPersons(
-            persons.map((person) =>
-              person.id !== returnedPerson.id ? person : returnedPerson
-            )
-          );
-          setNewName("");
-          setNewNumber("");
-        });
+        personService
+          .update(updatedPerson)
+          .then((returnedPerson) => {
+            setPersons(
+              persons.map((person) =>
+                person.id !== returnedPerson.id ? person : returnedPerson
+              )
+            );
+            setNewName("");
+            setNewNumber("");
+          })
+          .catch(() => {
+            setErrorMessage(
+              `Information of ${newName} has already been removed from Server`
+            );
+            setTimeout(() => {
+              setErrorMessage(null);
+            }, 5000);
+            setPersons(persons.filter((person) => person.name !== newName));
+          });
       }
       return;
     }
@@ -66,6 +81,10 @@ const App = () => {
       setPersons(persons.concat(addedPerson));
       setNewName("");
       setNewNumber("");
+      setNotifyMessage(`Added ${newPerson.name}`);
+      setTimeout(() => {
+        setNotifyMessage(null);
+      }, 5000);
     });
   };
 
@@ -98,7 +117,8 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-
+      <Notification message={notifyMessage} />
+      <Error message={errorMessage} />
       <Filter newSearch={newSearch} handleSearchChange={handleSearchChange} />
 
       <h3>add a new</h3>
