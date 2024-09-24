@@ -57,6 +57,16 @@ app.delete("/api/persons/:id", (request, response) => {
 
 app.post("/api/persons", (request, response) => {
   const person = request.body;
+  if (!person.number || !person.name) {
+    return response.status(400).json({
+      error: "information missing",
+    });
+  } else if (phoneNumbers.find((p) => p.name === person.name)) {
+    return response.status(400).json({
+      error: "name must be unique",
+    });
+  }
+
   person.id = String(Math.random());
   phoneNumbers = phoneNumbers.concat(person);
   response.json(person);

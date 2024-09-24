@@ -4,7 +4,7 @@ content-type: application/json
 
 {
     "name": "sample2",
-    "time": "2"}
+    "number": "2"}
 
 ###
 GET http://localhost:3001/api/persons
