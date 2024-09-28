@@ -1,7 +1,9 @@
 const morgan = require("morgan");
 const express = require("express");
 const app = express();
+const cors = require("cors");
 
+app.use(cors());
 app.use(morgan("tiny"));
 app.use(express.json());
 
@@ -72,6 +74,7 @@ app.post("/api/persons", (request, response) => {
   person.id = String(Math.random());
   phoneNumbers = phoneNumbers.concat(person);
   response.json(person);
+  console.log(request.body);
 });
 
 const PORT = 3001;
