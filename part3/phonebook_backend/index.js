@@ -58,28 +58,25 @@ app.get("/api/persons/:id", (request, response) => {
 });
 
 app.delete("/api/persons/:id", (request, response) => {
-  phoneNumbers = phoneNumbers.filter(
-    (person) => person.id !== request.params.id
-  );
-  response.status(204).end();
+  Person.findById(request.params.id).then((person) => {
+    response.json(person);
+  });
 });
 
 app.post("/api/persons", (request, response) => {
-  const person = request.body;
-  if (!person.number || !person.name) {
+  const body = request.body;
+  if (!body.number || !body.name) {
     return response.status(400).json({
       error: "information missing",
     });
-  } else if (phoneNumbers.find((p) => p.name === person.name)) {
-    return response.status(400).json({
-      error: "name must be unique",
-    });
   }
-
-  person.id = String(Math.random());
-  phoneNumbers = phoneNumbers.concat(person);
-  response.json(person);
-  console.log(request.body);
+  const person = new Person({
+    name: body.name,
+    number: body.number,
+  });
+  person.save().then((savedPerson) => {
+    response.json(savedPerson);
+  });
 });
 
 const PORT = process.env.PORT;
