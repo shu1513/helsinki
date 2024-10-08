@@ -41,23 +41,22 @@ app.get("/api/persons", (request, response, next) => {
     .catch((error) => next(error));
 });
 
-/*
 app.get("/info", (request, response) => {
-  const peopleCount = phoneNumbers.length;
-  const currentTime = new Date();
-  response.send(
-    `<p> Phonebook has info for ${peopleCount} people </p>
+  Person.find({}).then((people) => {
+    const currentTime = new Date();
+    response.send(
+      `<p> Phonebook has info for ${people.length} people </p>
         <p>current time here ${currentTime}</p>`
-  );
+    );
+  });
 });
-*/
+
 app.get("/api/persons/:id", (request, response) => {
-  const person = phoneNumbers.find((person) => person.id === request.params.id);
-  if (person) {
-    response.json(person);
-  } else {
-    response.status(404).end();
-  }
+  Person.findById(request.params.id)
+    .then((people) => {
+      response.json(people);
+    })
+    .catch((error) => next(error));
 });
 
 app.put("/api/persons/:id", (request, response, next) => {
