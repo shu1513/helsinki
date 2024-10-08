@@ -33,12 +33,15 @@ let phoneNumbers = [
   },
 ];
 
-app.get("/api/persons", (request, response) => {
-  Person.find({}).then((people) => {
-    response.json(people);
-  });
+app.get("/api/persons", (request, response, next) => {
+  Person.find({})
+    .then((people) => {
+      response.json(people);
+    })
+    .catch((error) => next(error));
 });
 
+/*
 app.get("/info", (request, response) => {
   const peopleCount = phoneNumbers.length;
   const currentTime = new Date();
@@ -47,7 +50,7 @@ app.get("/info", (request, response) => {
         <p>current time here ${currentTime}</p>`
   );
 });
-
+*/
 app.get("/api/persons/:id", (request, response) => {
   const person = phoneNumbers.find((person) => person.id === request.params.id);
   if (person) {
@@ -57,13 +60,23 @@ app.get("/api/persons/:id", (request, response) => {
   }
 });
 
-app.delete("/api/persons/:id", (request, response) => {
-  Person.findById(request.params.id).then((person) => {
-    response.json(person);
-  });
+app.put("/api/persons/:id", (request, response, next) => {
+  Person.findByIdAndUpdate(request.params.id, request.body, { new: true })
+    .then((updatedPerson) => {
+      response.json(updatedPerson);
+    })
+    .catch((error) => next(error));
 });
 
-app.post("/api/persons", (request, response) => {
+app.delete("/api/persons/:id", (request, response, next) => {
+  Person.findByIdAndDelete(request.params.id)
+    .then((result) => {
+      response.status(204).end();
+    })
+    .catch((error) => next(error));
+});
+
+app.post("/api/persons", (request, response, next) => {
   const body = request.body;
   if (!body.number || !body.name) {
     return response.status(400).json({
@@ -74,11 +87,24 @@ app.post("/api/persons", (request, response) => {
     name: body.name,
     number: body.number,
   });
-  person.save().then((savedPerson) => {
-    response.json(savedPerson);
-  });
+  person
+    .save()
+    .then((savedPerson) => {
+      response.json(savedPerson);
+    })
+    .catch((error) => next(error));
 });
 
+const errorHandler = (error, request, response, next) => {
+  console.error(error.message);
+  if (error.name === "CastError") {
+    return response.status(400).json({ error: "Malformatted ID" });
+  } else if (error.name === "ValidationError") {
+    return response.status(400).json({ error: error.message });
+  }
+  next(error);
+};
+app.use(errorHandler);
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
