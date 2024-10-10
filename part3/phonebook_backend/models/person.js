@@ -14,9 +14,31 @@ mongoose
     console.log("error connecting to MongoDB", error.message);
   });
 
+const validatePhoneNumber = (number) => {
+  // Regular expression to check phone number pattern
+  const regex = /^(\d{2,3})-(\d+)$/;
+
+  // Test if the phone number matches the pattern
+  const result = regex.test(number);
+
+  // Additionally, check the length of the number
+  // Remove the '-' and check that the total length is 8 or more
+  const withoutHyphen = number.replace("-", "");
+  const lengthValid = withoutHyphen.length >= 8;
+
+  return result && lengthValid;
+};
+
 const personSchema = new mongoose.Schema({
-  name: { type: String },
-  number: { type: String },
+  name: { type: String, minLength: 3 },
+  number: {
+    type: String,
+    required: [true, "phone number required"],
+    validate: {
+      validator: validatePhoneNumber,
+      message: (props) => `${props.value} is not a valid phone number.`,
+    },
+  },
 });
 
 personSchema.set("toJSON", {
