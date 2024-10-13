@@ -37,7 +37,30 @@ const mostBlogs = (blogsArray) => {
   return mostPublishedAuthor;
 };
 
+const mostLikes = (blogsArray) => {
+  const reducer = (publications, blog) => {
+    const author = blog.author;
+    {
+      publications[author] = (publications[author] || 0) + blog.likes;
+    }
+    return publications;
+  };
+  const authorLikes = blogsArray.reduce(reducer, {});
+  let mostLikedAuthor = null;
+  let maxLikes = -1;
+
+  // Iterate over the object to find the author with the most likes
+  for (const [author, likes] of Object.entries(authorLikes)) {
+    if (likes > maxLikes) {
+      mostLikedAuthor = author;
+      maxLikes = likes;
+    }
+  }
+  return { author: mostLikedAuthor, likes: maxLikes };
+};
+
 module.exports = {
+  mostLikes,
   mostBlogs,
   favoriteBlog,
   totalLikes,
