@@ -41,7 +41,7 @@ test("unique identifier is named id with non-existing blog", async () => {
   await api.get("/api/blogs/aa422a851b54a676234d17f7").expect(404);
 });
 
-test.only("able to post a blog", async () => {
+test("able to post a blog", async () => {
   const newblog = {
     title: "Add sample",
     author: "Add sample author",
@@ -61,7 +61,7 @@ test.only("able to post a blog", async () => {
   assert(contents.includes("Add sample author"));
 });
 
-test.only("likes property set to zero if not provided ", async () => {
+test("likes property set to zero if not provided ", async () => {
   const newblog = {
     title: "Add sample",
     author: "Add sample author",
@@ -78,6 +78,26 @@ test.only("likes property set to zero if not provided ", async () => {
   const contents = blogsAtEnd.map((b) => b.author);
   assert(contents.includes("Add sample author"));
   assert.strictEqual(response.body.likes, 0);
+});
+
+test.only("un able to post a blog without a title or URL", async () => {
+  const blogWithoutTitle = {
+    author: "Add sample author",
+    url: "http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html",
+    likes: 15,
+  };
+  const blogWithoutURL = {
+    title: "Add sample",
+    author: "Add sample author",
+  };
+  await api.post("/api/blogs").send(blogWithoutTitle).expect(400);
+  await api.post("/api/blogs").send(blogWithoutURL).expect(400);
+
+  const blogsAtEnd = await helper.blogsInDb();
+
+  assert.strictEqual(blogsAtEnd.length, helper.initialBlogs.length);
+  const contents = blogsAtEnd.map((b) => b.author);
+  assert(!contents.includes("Add sample author"));
 });
 
 after(async () => {

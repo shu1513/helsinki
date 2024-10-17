@@ -20,7 +20,7 @@ blogsRouter.get("/:id", async (request, response) => {
   } else response.status(404).end();
 });
 
-blogsRouter.post("/", async (request, response) => {
+blogsRouter.post("/", async (request, response, next) => {
   const blog = new Blog(request.body);
   try {
     const result = await blog.save();
