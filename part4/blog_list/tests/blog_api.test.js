@@ -43,14 +43,31 @@ test("unique identifier is named id with non-existing blog", async () => {
 
 test.only("able to post a blog", async () => {
   const newblog = {
-    _id: "6a422aa71b54a676234d17f8",
     title: "Add sample",
     author: "Add sample author",
     url: "http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html",
     likes: 15,
-    __v: 0,
   };
   await api
+    .post("/api/blogs")
+    .send(newblog)
+    .expect(201)
+    .expect("Content-Type", /application\/json/);
+
+  const blogsAtEnd = await helper.blogsInDb();
+
+  assert.strictEqual(blogsAtEnd.length, helper.initialBlogs.length + 1);
+  const contents = blogsAtEnd.map((b) => b.author);
+  assert(contents.includes("Add sample author"));
+});
+
+test.only("likes property set to zero if not provided ", async () => {
+  const newblog = {
+    title: "Add sample",
+    author: "Add sample author",
+    url: "http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html",
+  };
+  const response = await api
     .post("/api/blogs")
     .send(newblog)
     .expect(201)
@@ -60,6 +77,7 @@ test.only("able to post a blog", async () => {
   assert.strictEqual(blogsAtEnd.length, helper.initialBlogs.length + 1);
   const contents = blogsAtEnd.map((b) => b.author);
   assert(contents.includes("Add sample author"));
+  assert.strictEqual(response.body.likes, 0);
 });
 
 after(async () => {
