@@ -41,6 +41,27 @@ test("unique identifier is named id with non-existing blog", async () => {
   await api.get("/api/blogs/aa422a851b54a676234d17f7").expect(404);
 });
 
+test.only("able to post a blog", async () => {
+  const newblog = {
+    _id: "6a422aa71b54a676234d17f8",
+    title: "Add sample",
+    author: "Add sample author",
+    url: "http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html",
+    likes: 15,
+    __v: 0,
+  };
+  await api
+    .post("/api/blogs")
+    .send(newblog)
+    .expect(201)
+    .expect("Content-Type", /application\/json/);
+  console.log("blog added");
+  const blogsAtEnd = await helper.blogsInDb();
+  assert.strictEqual(blogsAtEnd.length, helper.initialBlogs.length + 1);
+  const contents = blogsAtEnd.map((b) => b.author);
+  assert(contents.includes("Add sample author"));
+});
+
 after(async () => {
   await mongoose.connection.close();
 });
