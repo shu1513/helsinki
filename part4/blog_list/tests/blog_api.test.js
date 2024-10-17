@@ -28,12 +28,11 @@ test("unique identifier is named id with existing blog", async () => {
   assert.strictEqual(response.statusCode, 200);
   assert.match(response.headers["content-type"], /application\/json/);
   assert.deepStrictEqual(response.body, {
-    _id: "5a422a851b54a676234d17f7",
+    id: "5a422a851b54a676234d17f7",
     title: "React patterns",
     author: "Michael Chan",
     url: "https://reactpatterns.com/",
     likes: 7,
-    __v: 0,
   });
 });
 
@@ -80,7 +79,7 @@ test("likes property set to zero if not provided ", async () => {
   assert.strictEqual(response.body.likes, 0);
 });
 
-test.only("un able to post a blog without a title or URL", async () => {
+test("un able to post a blog without a title or URL", async () => {
   const blogWithoutTitle = {
     author: "Add sample author",
     url: "http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html",
@@ -98,6 +97,45 @@ test.only("un able to post a blog without a title or URL", async () => {
   assert.strictEqual(blogsAtEnd.length, helper.initialBlogs.length);
   const contents = blogsAtEnd.map((b) => b.author);
   assert(!contents.includes("Add sample author"));
+});
+
+test("success delet blog status code 204 if valid", async () => {
+  const blogsAtStart = await helper.blogsInDb();
+
+  const blogToDelete = blogsAtStart[0];
+
+  await api.delete(`/api/blogs/${blogToDelete.id}`).expect(204);
+  const blogsAtEnd = await helper.blogsInDb();
+  assert.strictEqual(blogsAtEnd.length, blogsAtStart.length - 1);
+  const contents = blogsAtEnd.map((b) => b.title);
+
+  assert(!contents.includes(blogToDelete.title));
+});
+
+test("can update a blog", async () => {
+  const blogsAtStart = await helper.blogsInDb();
+
+  const blogToChange = blogsAtStart[0];
+
+  const newblog = { ...blogToChange, likes: 20 };
+
+  const response = await api
+    .put(`/api/blogs/${blogToChange.id}`)
+    .send(newblog)
+    .expect(200)
+    .expect("Content-Type", /application\/json/);
+
+  assert.deepStrictEqual(response.body, newblog);
+
+  const blogsAtEnd = await helper.blogsInDb();
+
+  assert.strictEqual(blogsAtEnd.length, blogsAtStart.length);
+  const contents = blogsAtEnd.map((b) => b.likes);
+  assert(contents.includes(20));
+  const updatedBlogFound = blogsAtEnd.find(
+    (blog) => blog.id === blogToChange.id
+  );
+  assert.strictEqual(updatedBlogFound.likes, 20);
 });
 
 after(async () => {
