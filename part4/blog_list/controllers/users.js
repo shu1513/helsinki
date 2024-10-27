@@ -6,11 +6,9 @@ usersRouter.post("/", async (request, response, next) => {
   const { username, name, password } = request.body;
 
   if (!password || password.length < 3) {
-    return response
-      .status(400)
-      .json({
-        error: "username and password must be at least 3 characters long",
-      });
+    return response.status(400).json({
+      error: "username and password must be at least 3 characters long",
+    });
   }
 
   const saltRounds = 10;
@@ -32,7 +30,12 @@ usersRouter.post("/", async (request, response, next) => {
 
 usersRouter.get("/", async (request, response, next) => {
   try {
-    const users = await User.find({});
+    const users = await User.find({}).populate("blogs", {
+      title: 1,
+      url: 1,
+      author: 1,
+      likes: 1,
+    });
     response.json(users);
   } catch (error) {
     next(error);
