@@ -77,15 +77,24 @@ const App = () => {
 
   const createNewPerson = () => {
     const newPerson = { name: newName, number: newNumber };
-    personService.create(newPerson).then((addedPerson) => {
-      setPersons(persons.concat(addedPerson));
-      setNewName("");
-      setNewNumber("");
-      setNotifyMessage(`Added ${newPerson.name}`);
-      setTimeout(() => {
-        setNotifyMessage(null);
-      }, 5000);
-    });
+    personService
+      .create(newPerson)
+      .then((addedPerson) => {
+        setPersons(persons.concat(addedPerson));
+        setNewName("");
+        setNewNumber("");
+        setNotifyMessage(`Added ${newPerson.name}`);
+        setTimeout(() => {
+          setNotifyMessage(null);
+        }, 5000);
+      })
+      .catch((error) => {
+        setErrorMessage(`${error.response.data.error}`);
+        setTimeout(() => {
+          setErrorMessage(null);
+        }, 5000);
+        setPersons(persons.filter((person) => person.name !== newName));
+      });
   };
 
   const handleDelete = (id) => {

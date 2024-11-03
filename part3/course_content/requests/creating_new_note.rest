@@ -3,8 +3,10 @@ GET http://localhost:3001/api/notes/
 ###
 POST http://localhost:3001/api/notes/ HTTP/1.1
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1sdXVra2FpIiwiaWQiOiI2NzE5MDU2M2I3YjBiMDIxMTFmM2Y4OTYiLCJpYXQiOjE3Mjk4MDQ5NzJ9.qAdEfng2Kdesu9jAWZjRWBsUvXxNm783FUKquDmzmaw
 
 {
-    "name": "sample",
-    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+    "content": "test if creating user works with token",
+    "important":true
+   
 }
