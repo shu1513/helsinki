@@ -1,16 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Blog from "./components/Blog";
 import Login from "./components/Login";
 import Notification from "./components/Notification";
 import blogService from "./services/blogs";
 import NewBlog from "./components/NewBlog";
 import Logout from "./components/Logout";
+import Togglable from "./components/Togglable";
 
 const App = () => {
   const [blogs, setBlogs] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
   const [user, setUser] = useState(null);
+  const blogFormRef = useRef();
 
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs));
@@ -21,8 +23,22 @@ const App = () => {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
       setUser(user);
+      blogService.setToken(user.token);
     }
   }, []);
+
+  const createBlog = async (blogObject) => {
+    await blogService.create(blogObject);
+    setSuccessMessage(
+      `a new blog ${blogObject.title} by ${blogObject.author} added`
+    );
+    blogFormRef.current.toggleVisibility();
+    const blogs = await blogService.getAll();
+    setBlogs(blogs);
+    setTimeout(() => {
+      setSuccessMessage(null);
+    }, 5000);
+  };
 
   if (user === null) {
     return (
@@ -31,20 +47,21 @@ const App = () => {
         <Login setUser={setUser} setErrorMessage={setErrorMessage} />
       </>
     );
+  } else {
+    return (
+      <div>
+        <h2>blogs</h2>
+        <Notification message={successMessage} className={"success"} />
+        <p>{user.name} is logged in</p>
+        <Logout text={"logout"} setUser={setUser} />
+        <Togglable buttonLabel="new blog" ref={blogFormRef}>
+          <NewBlog createBlog={createBlog} />
+        </Togglable>
+        {blogs.map((blog) => (
+          <Blog key={blog.id} blog={blog} />
+        ))}
+      </div>
+    );
   }
-  return (
-    <div>
-      <h2>blogs</h2>
-      <Notification message={successMessage} className={"success"} />
-      <p>{user.name} is logged in</p>
-      <Logout text={"logout"} setUser={setUser} />
-      <NewBlog setSuccessMessage={setSuccessMessage} setBlogs={setBlogs} />
-
-      {blogs.map((blog) => (
-        <Blog key={blog.id} blog={blog} />
-      ))}
-    </div>
-  );
 };
-
 export default App;
