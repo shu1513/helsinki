@@ -31,6 +31,8 @@ app.use(middleware.requestLogger);
 
 app.post("/api/blogs", middleware.tokenExtractor);
 
+app.put("/api/blogs/:id", middleware.tokenExtractor);
+
 app.use("/api/blogs", blogsRouter);
 
 app.use("/api/users", usersRouter);

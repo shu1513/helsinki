@@ -1,5 +1,5 @@
 import { useState } from "react";
-const Blog = ({ blog }) => {
+const Blog = ({ blog, updateBlog }) => {
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
@@ -10,6 +10,7 @@ const Blog = ({ blog }) => {
   const [blogVisible, setBlogVisible] = useState(false);
   const hideWhenVisible = blogVisible ? { display: "none" } : blogStyle;
   const showWhenVisible = blogVisible ? blogStyle : { display: "none" };
+  const [likeCount, setLikeCount] = useState(blog.likes);
 
   const toggleVisibility = () => {
     setBlogVisible(!blogVisible);
@@ -18,6 +19,20 @@ const Blog = ({ blog }) => {
   const storedUser = JSON.parse(
     window.localStorage.getItem("loggedBlogappUser")
   );
+
+  const handleUpdateBlog = async () => {
+    const updatedLikes = likeCount + 1;
+    setLikeCount(updatedLikes);
+    const updatedBlog = { ...blog, likes: updatedLikes };
+    console.log("Sending updated blog:", updatedBlog);
+
+    try {
+      await updateBlog(updatedBlog);
+    } catch (error) {
+      setLikeCount(likeCount);
+      throw error;
+    }
+  };
 
   return (
     <div>
@@ -31,7 +46,7 @@ const Blog = ({ blog }) => {
         <br />
         {blog.url}
         <br />
-        likes {blog.likes} <button>like</button>
+        likes {likeCount} <button onClick={handleUpdateBlog}>like</button>
         <br />
         {storedUser.name}
       </div>
