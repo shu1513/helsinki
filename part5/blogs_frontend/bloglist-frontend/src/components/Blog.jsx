@@ -1,5 +1,5 @@
 import { useState } from "react";
-const Blog = ({ blog, updateBlog }) => {
+const Blog = ({ blog, updateBlog, deleteBlog }) => {
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
@@ -49,6 +49,8 @@ const Blog = ({ blog, updateBlog }) => {
         likes {likeCount} <button onClick={handleUpdateBlog}>like</button>
         <br />
         {storedUser.name}
+        <br />
+        <button onClick={() => deleteBlog(blog)}>remove</button>
       </div>
     </div>
   );

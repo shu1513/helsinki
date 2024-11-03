@@ -31,8 +31,7 @@ const update = async (oldBlog) => {
   const config = {
     headers: { Authorization: token },
   };
-  console.log("old token", token);
-  console.log(config);
+
   const newBlog = {
     title: oldBlog.title,
     author: oldBlog.author,
@@ -54,4 +53,16 @@ const update = async (oldBlog) => {
   }
 };
 
-export default { getAll, setToken, create, getToken, update };
+const deleteBlog = async (oldBlog) => {
+  const config = {
+    headers: { Authorization: token },
+  };
+  try {
+    await axios.delete(`${baseUrl}/${oldBlog.id}`, config);
+  } catch (error) {
+    console.error("Error creating object:", error);
+    throw error;
+  }
+};
+
+export default { getAll, setToken, create, getToken, update, deleteBlog };

@@ -40,6 +40,25 @@ const App = () => {
     }, 5000);
   };
 
+  const deleteBlog = async (blogObject) => {
+    const confirmDelete = window.confirm(
+      `Delete ${blogObject.title} by ${blogObject.author}?`
+    );
+    if (confirmDelete) {
+      await blogService.deleteBlog(blogObject);
+      setSuccessMessage(
+        `The blog ${blogObject.title} by ${blogObject.author} has be deleted.`
+      );
+      const blogs = await blogService.getAll();
+      setBlogs(blogs);
+      setTimeout(() => {
+        setSuccessMessage(null);
+      }, 5000);
+    }
+  };
+
+  const sortedBlogs = blogs.sort((blogA, blogB) => blogB.likes - blogA.likes);
+
   if (user === null) {
     return (
       <>
@@ -57,8 +76,13 @@ const App = () => {
         <Togglable buttonLabel="new blog" ref={blogFormRef}>
           <NewBlog createBlog={createBlog} />
         </Togglable>
-        {blogs.map((blog) => (
-          <Blog key={blog.id} blog={blog} updateBlog={blogService.update} />
+        {sortedBlogs.map((blog) => (
+          <Blog
+            key={blog.id}
+            blog={blog}
+            updateBlog={blogService.update}
+            deleteBlog={deleteBlog}
+          />
         ))}
       </div>
     );
