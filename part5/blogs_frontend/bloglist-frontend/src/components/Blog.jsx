@@ -1,38 +1,40 @@
-import { useState } from "react";
+import PropTypes from 'prop-types'
+import { useState } from 'react'
+
 const Blog = ({ blog, updateBlog, deleteBlog }) => {
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
-    border: "solid",
+    border: 'solid',
     borderWidth: 1,
     marginBottom: 5,
-  };
-  const [blogVisible, setBlogVisible] = useState(false);
-  const hideWhenVisible = blogVisible ? { display: "none" } : blogStyle;
-  const showWhenVisible = blogVisible ? blogStyle : { display: "none" };
-  const [likeCount, setLikeCount] = useState(blog.likes);
+  }
+  const [blogVisible, setBlogVisible] = useState(false)
+  const hideWhenVisible = blogVisible ? { display: 'none' } : blogStyle
+  const showWhenVisible = blogVisible ? blogStyle : { display: 'none' }
+  const [likeCount, setLikeCount] = useState(blog.likes)
 
   const toggleVisibility = () => {
-    setBlogVisible(!blogVisible);
-  };
+    setBlogVisible(!blogVisible)
+  }
 
   const storedUser = JSON.parse(
-    window.localStorage.getItem("loggedBlogappUser")
-  );
+    window.localStorage.getItem('loggedBlogappUser')
+  )
 
   const handleUpdateBlog = async () => {
-    const updatedLikes = likeCount + 1;
-    setLikeCount(updatedLikes);
-    const updatedBlog = { ...blog, likes: updatedLikes };
-    console.log("Sending updated blog:", updatedBlog);
+    const updatedLikes = likeCount + 1
+    setLikeCount(updatedLikes)
+    const updatedBlog = { ...blog, likes: updatedLikes }
+    console.log('Sending updated blog:', updatedBlog)
 
     try {
-      await updateBlog(updatedBlog);
+      await updateBlog(updatedBlog)
     } catch (error) {
-      setLikeCount(likeCount);
-      throw error;
+      setLikeCount(likeCount)
+      throw error
     }
-  };
+  }
 
   return (
     <div>
@@ -53,7 +55,13 @@ const Blog = ({ blog, updateBlog, deleteBlog }) => {
         <button onClick={() => deleteBlog(blog)}>remove</button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Blog;
+Blog.propTypes = {
+  blog: PropTypes.object.isRequired,
+  updateBlog: PropTypes.func.isRequired,
+  deleteBlog: PropTypes.func.isRequired,
+}
+
+export default Blog

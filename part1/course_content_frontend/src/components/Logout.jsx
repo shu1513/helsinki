@@ -3,14 +3,14 @@ const Logout = ({ text, setUser }) => {
     <p>
       <button
         onClick={() => {
-          window.localStorage.clear()
-          setUser(null)
+          window.localStorage.removeItem("loggedNoteappUser");
+          setUser(null);
         }}
       >
         {text}
       </button>
     </p>
-  )
-}
+  );
+};
 
-export default Logout
+export default Logout;
