@@ -1,48 +1,48 @@
-import PropTypes from 'prop-types'
-import { useState } from 'react'
+import PropTypes from "prop-types";
+import { useState } from "react";
 
 const Blog = ({ blog, updateBlog, deleteBlog }) => {
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
-    border: 'solid',
+    border: "solid",
     borderWidth: 1,
     marginBottom: 5,
-  }
-  const [blogVisible, setBlogVisible] = useState(false)
-  const hideWhenVisible = blogVisible ? { display: 'none' } : blogStyle
-  const showWhenVisible = blogVisible ? blogStyle : { display: 'none' }
-  const [likeCount, setLikeCount] = useState(blog.likes)
+  };
+  const [blogVisible, setBlogVisible] = useState(false);
+  const hideWhenVisible = blogVisible ? { display: "none" } : blogStyle;
+  const showWhenVisible = blogVisible ? blogStyle : { display: "none" };
+  const [likeCount, setLikeCount] = useState(blog.likes);
 
   const toggleVisibility = () => {
-    setBlogVisible(!blogVisible)
-  }
+    setBlogVisible(!blogVisible);
+  };
 
   const storedUser = JSON.parse(
-    window.localStorage.getItem('loggedBlogappUser')
-  )
+    window.localStorage.getItem("loggedBlogappUser")
+  );
 
   const handleUpdateBlog = async () => {
-    const updatedLikes = likeCount + 1
-    setLikeCount(updatedLikes)
-    const updatedBlog = { ...blog, likes: updatedLikes }
-    console.log('Sending updated blog:', updatedBlog)
+    const updatedLikes = likeCount + 1;
+    setLikeCount(updatedLikes);
+    const updatedBlog = { ...blog, likes: updatedLikes };
+    console.log("Sending updated blog:", updatedBlog);
 
     try {
-      await updateBlog(updatedBlog)
+      await updateBlog(updatedBlog);
     } catch (error) {
-      setLikeCount(likeCount)
-      throw error
+      setLikeCount(likeCount);
+      throw error;
     }
-  }
+  };
 
   return (
     <div>
-      <div style={hideWhenVisible}>
+      <div style={hideWhenVisible} className="briefDescription">
         {blog.title} {blog.author}
         <button onClick={toggleVisibility}>view</button>
       </div>
-      <div style={showWhenVisible}>
+      <div style={showWhenVisible} className="fullDescription">
         {blog.title} {blog.author}
         <button onClick={toggleVisibility}>hide</button>
         <br />
@@ -55,13 +55,13 @@ const Blog = ({ blog, updateBlog, deleteBlog }) => {
         <button onClick={() => deleteBlog(blog)}>remove</button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 Blog.propTypes = {
   blog: PropTypes.object.isRequired,
-  updateBlog: PropTypes.func.isRequired,
-  deleteBlog: PropTypes.func.isRequired,
-}
+  updateBlog: PropTypes.func,
+  deleteBlog: PropTypes.func,
+};
 
-export default Blog
+export default Blog;
