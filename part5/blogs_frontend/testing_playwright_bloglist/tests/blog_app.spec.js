@@ -60,7 +60,7 @@ describe("Blog app", () => {
           await createBlog(page, "test title", "test author", "test url");
           await createBlog(page, "test title 2", "test author 2", "test url 2");
         });
-        test.only("a blog can be liked", async ({ page }) => {
+        test("a blog can be liked", async ({ page }) => {
           const testBlog1 = await page.locator(
             `.briefDescription:has-text("test title test author")`
           );
@@ -73,6 +73,31 @@ describe("Blog app", () => {
           await testBlog1Full.getByRole("button", { name: "like" }).click();
           await expect(testBlog1Full.getByText("likes 0 ")).not.toBeVisible();
           await expect(testBlog1Full.getByText("likes 1 ")).toBeVisible();
+        });
+        test.only("can delete blog", async ({ page }) => {
+          const testBlog1 = await page.locator(
+            `.briefDescription:has-text("test title test author")`
+          );
+          await testBlog1.getByText("view").click();
+          const testBlog1Full = page.locator(
+            `.fullDescription:has-text("test title test author")`
+          );
+          await expect(testBlog1Full).toBeVisible();
+          await page.on("dialog", async (dialog) => {
+            if (dialog.type() === "confirm") {
+              await dialog.accept();
+            }
+          });
+          await testBlog1Full.getByRole("button", { name: "remove" }).click();
+          await expect(
+            page.getByText("The blog test title by test author has be deleted.")
+          ).toBeVisible();
+
+          await expect(
+            page
+              .locator(".briefDescription")
+              .getByText("test title test author")
+          ).not.toBeVisible();
         });
       });
     });
