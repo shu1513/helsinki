@@ -74,7 +74,7 @@ describe("Blog app", () => {
           await expect(testBlog1Full.getByText("likes 0 ")).not.toBeVisible();
           await expect(testBlog1Full.getByText("likes 1 ")).toBeVisible();
         });
-        test.only("can delete blog", async ({ page }) => {
+        test("can delete blog", async ({ page }) => {
           const testBlog1 = await page.locator(
             `.briefDescription:has-text("test title test author")`
           );
@@ -97,6 +97,33 @@ describe("Blog app", () => {
             page
               .locator(".briefDescription")
               .getByText("test title test author")
+          ).not.toBeVisible();
+        });
+        test.only("only user who added the blog sees the delete button", async ({
+          page,
+          request,
+        }) => {
+          //create another new user in the database
+          await request.post("api/users", {
+            data: {
+              name: "Matti Luukkainen 2",
+              username: "mluukkai2",
+              password: "salainen2",
+            },
+          });
+          // logout then
+          await page.getByRole("button", { name: "logout" }).click();
+          await expect(page.getByText("log in to application")).toBeVisible();
+          // log back in as another user
+          await loginWith(page, "mluukkai2", "salainen2");
+          const testBlog1 = await page.locator(
+            `.briefDescription:has-text("test title test author")`
+          );
+          await testBlog1.getByText("view").click();
+          await expect(
+            page.getByRole("button", {
+              name: "remove",
+            })
           ).not.toBeVisible();
         });
       });
