@@ -1,16 +1,17 @@
-import { useState } from 'react'
-import loginService from '../services/login'
-import blogService from '../services/blogs'
+import { useState } from "react";
+import loginService from "../services/login";
+import blogService from "../services/blogs";
 
 const Login = ({ setUser, setErrorMessage }) => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const loginForm = () => (
     <form onSubmit={handleLogin}>
       <div>
         username
         <input
+          data-testid="username"
           type="text"
           value={username}
           name="Username"
@@ -18,8 +19,9 @@ const Login = ({ setUser, setErrorMessage }) => {
         />
       </div>
       <div>
-        Password
+        password
         <input
+          data-testid="password"
           type="password"
           value={password}
           name="Password"
@@ -28,36 +30,36 @@ const Login = ({ setUser, setErrorMessage }) => {
       </div>
       <button type="submit">login</button>
     </form>
-  )
+  );
 
   const handleLogin = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     try {
       const user = await loginService.login({
         username,
         password,
-      })
-      window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
+      });
+      window.localStorage.setItem("loggedBlogappUser", JSON.stringify(user));
 
-      blogService.setToken(user.token)
+      blogService.setToken(user.token);
 
-      setUser(user)
+      setUser(user);
 
-      setUsername('')
-      setPassword('')
+      setUsername("");
+      setPassword("");
     } catch (exception) {
-      setErrorMessage('Wrong credentials')
+      setErrorMessage("Wrong credentials");
       setTimeout(() => {
-        setErrorMessage(null)
-      }, 3000)
+        setErrorMessage(null);
+      }, 3000);
     }
-  }
+  };
 
   return (
     <div>
       <h2>log in to application</h2>
       {loginForm()}
     </div>
-  )
-}
-export default Login
+  );
+};
+export default Login;

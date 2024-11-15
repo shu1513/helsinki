@@ -47,12 +47,14 @@ const Blog = ({ blog, updateBlog, deleteBlog }) => {
         <button onClick={toggleVisibility}>hide</button>
         <br />
         {blog.url}
-        <br />
+        <br data-testid="likes" />
         likes {likeCount} <button onClick={handleUpdateBlog}>like</button>
         <br />
         {storedUser.name}
         <br />
-        <button onClick={() => deleteBlog(blog)}>remove</button>
+        {storedUser.username === blog.user.username && (
+          <button onClick={() => deleteBlog(blog)}>remove</button>
+        )}
       </div>
     </div>
   );

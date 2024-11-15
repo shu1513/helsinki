@@ -13,7 +13,7 @@ const createBlog = async (page, title, author, url) => {
   const blogLocator = page.locator(
     `.briefDescription:has-text("${title} ${author}")`
   );
-  await blogLocator.waitFor({ state: "visible" });
+  await blogLocator.waitFor({ state: "visible", timeout: 3000 });
 };
 
 export { loginWith, createBlog };
