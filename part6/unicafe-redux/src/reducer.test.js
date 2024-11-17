@@ -51,12 +51,16 @@ describe("unicafe reducer", () => {
     const action = {
       type: "OK",
     };
-    const state = initialState;
+    const state = {
+      good: 0,
+      ok: 1,
+      bad: 0,
+    };
     deepFreeze(state);
     const newState = counterReducer(state, action);
     expect(newState).toEqual({
       good: 0,
-      ok: 1,
+      ok: 2,
       bad: 0,
     });
   });
