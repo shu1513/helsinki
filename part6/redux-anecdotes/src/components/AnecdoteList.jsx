@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { createVote } from "../reducers/anecdoteReducer";
+import { voteAnecdotes } from "../reducers/anecdoteReducer";
 
 const Anecdote = ({ content, votes, handleClick }) => {
   return (
@@ -13,21 +13,21 @@ const Anecdote = ({ content, votes, handleClick }) => {
   );
 };
 const AnecdoteList = () => {
-  const anecdotes = useSelector((state) => {
-    if (state.filter === "") {
-      return state.anecdotes;
+  const anecdotes = useSelector(({ filter, anecdotes }) => {
+    if (filter === "") {
+      return anecdotes;
     }
-    return state.anecdotes.filter((anecdote) =>
-      anecdote.content.toLowerCase().includes(state.filter.toLowerCase())
+    return anecdotes.filter((anecdote) =>
+      anecdote.content.toLowerCase().includes(filter.toLowerCase())
     );
   });
   const dispatch = useDispatch();
 
   const vote = (id) => {
-    dispatch(createVote(id));
+    dispatch(voteAnecdotes(id));
   };
 
-  const sortedAnecdotes = anecdotes.sort(
+  const sortedAnecdotes = [...anecdotes].sort(
     (anecdoteA, anecdoteB) => anecdoteB.votes - anecdoteA.votes
   );
   return (
