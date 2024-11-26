@@ -31,13 +31,7 @@ const anecdoteSlice = createSlice({
       if (!id || !anecdoteToChange) {
         return state;
       }
-      const changedAnecdote = {
-        ...anecdoteToChange,
-        votes: anecdoteToChange.votes + 1,
-      };
-      return state.map((anecdote) =>
-        anecdote.id !== id ? anecdote : changedAnecdote
-      );
+      anecdoteToChange.votes += 1;
     },
 
     addAnecdotes(state = initialState, action) {
