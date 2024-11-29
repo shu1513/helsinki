@@ -1,9 +1,4 @@
 import { useSelector } from "react-redux";
-import {
-  setNotification,
-  removeNotification,
-} from "../reducers/notificationReducer";
-import { useDispatch } from "react-redux";
 
 const Notification = () => {
   const notification = useSelector(({ notification }) => notification);
