@@ -5,10 +5,7 @@ const filterSlice = createSlice({
   initialState: "",
   reducers: {
     filterAnecdote(state, action) {
-      if (action.payload) {
-        return action.payload;
-      }
-      return state;
+      return action.payload;
     },
   },
 });
