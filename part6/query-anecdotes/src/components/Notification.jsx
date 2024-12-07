@@ -9,7 +9,7 @@ const Notification = () => {
     if (notificationState) {
       const timer = setTimeout(() => {
         notificationDispatch({ type: "CLEAR" });
-      }, 3000);
+      }, 5000);
       return () => {
         clearTimeout(timer);
         notificationDispatch({ type: "CLEAR" });

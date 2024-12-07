@@ -17,6 +17,12 @@ const AnecdoteForm = () => {
         payload: newAnecdote.content,
       });
     },
+    onError: (error) => {
+      notificationDispatch({
+        type: "ERROR",
+        payload: error.response.data.error,
+      });
+    },
   });
   const onCreate = (event) => {
     event.preventDefault();
