@@ -1,20 +1,4 @@
-interface MultipleValues {
-  value1: number;
-  value2: number;
-}
-
-const parseArguments = (args: string[]): MultipleValues => {
-  if (args.length < 4) throw new Error("Not enough arguments");
-  if (args.length > 4) throw new Error("too many arguments");
-  if (!isNaN(Number(args[2])) && !isNaN(Number(args[3]))) {
-    return {
-      value1: Number(args[2]),
-      value2: Number(args[3]),
-    };
-  } else {
-    throw new Error("arguments need to be numbers");
-  }
-};
+import { parseArgumentsBmi } from "./utils";
 
 const calculateBmi = (height: number, weight: number): string => {
   const BMI: number = weight / (height / 100) ** 2;
@@ -31,7 +15,7 @@ const calculateBmi = (height: number, weight: number): string => {
 };
 
 try {
-  const { value1, value2 } = parseArguments(process.argv);
+  const { value1, value2 } = parseArgumentsBmi(process.argv);
   console.log(calculateBmi(value1, value2));
 } catch (error: unknown) {
   let errorMessage = "something went wrong. ";

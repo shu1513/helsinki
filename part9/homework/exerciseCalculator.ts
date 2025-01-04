@@ -1,3 +1,5 @@
+import { parseArgumentsExercise } from "./utils";
+
 interface resultType {
   periodLength: number;
   trainingDays: number;
@@ -55,4 +57,13 @@ const calculatorExercises = (
   };
 };
 
-console.log(calculatorExercises([3, 0, 2, 4.5, 0, 3, 1], 2));
+try {
+  const { value1, value2 } = parseArgumentsExercise(process.argv);
+  console.log(calculatorExercises(value1, value2));
+} catch (error: unknown) {
+  let errorMessage = "something went wrong. ";
+  if (error instanceof Error) {
+    errorMessage += errorMessage;
+  }
+  console.log(errorMessage);
+}
