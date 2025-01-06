@@ -32,7 +32,7 @@ const calculatorExercises = (
     exerciseHoursList.length;
   const success = average >= target;
   let ratingDescription = "";
-  let rating: number;
+  let rating: number = 0;
   if (average >= target && average <= target * 1.2) {
     ratingDescription = "you have met the target";
     rating = 3;
