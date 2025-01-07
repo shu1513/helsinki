@@ -10,7 +10,7 @@ interface resultType {
   average: number;
 }
 
-const calculatorExercises = (
+export const calculatorExercises = (
   exerciseHoursList: number[],
   targetHoursPerDay: number
 ): resultType => {
@@ -57,13 +57,15 @@ const calculatorExercises = (
   };
 };
 
-try {
-  const { value1, value2 } = parseArgumentsExercise(process.argv);
-  console.log(calculatorExercises(value1, value2));
-} catch (error: unknown) {
-  let errorMessage = "something went wrong. ";
-  if (error instanceof Error) {
-    errorMessage += errorMessage;
+if (require.main === module) {
+  try {
+    const { value1, value2 } = parseArgumentsExercise(process.argv);
+    console.log(calculatorExercises(value1, value2));
+  } catch (error: unknown) {
+    let errorMessage = "something went wrong. ";
+    if (error instanceof Error) {
+      errorMessage += errorMessage;
+    }
+    console.log(errorMessage);
   }
-  console.log(errorMessage);
 }
