@@ -1,3 +1,6 @@
+import { z } from "zod";
+import { NewEntrySchema } from "./utils";
+
 export interface DiagnosesEntry {
   code: string;
   name: string;
@@ -20,4 +23,5 @@ export interface PatientsEntry {
 }
 
 export type NonSensitivePatientEntry = Omit<PatientsEntry, "ssn">;
-export type NewPatientEntry = Omit<PatientsEntry, "id">;
+//export type NewPatientEntry = Omit<PatientsEntry, "id">;
+export type NewPatientEntry = z.infer<typeof NewEntrySchema>;
