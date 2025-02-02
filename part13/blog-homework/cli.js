@@ -38,15 +38,35 @@ Blog.init(
   }
 );
 
-const main = async () => {
-  try {
-    await sequelize.authenticate();
-    const blogs = await Blog.findAll();
-    console.log(blogs.map((blog) => blog.dataValues));
-    sequelize.close();
-  } catch (error) {
-    console.error("Unable to connect to the database:", error);
-  }
-};
+Blog.sync();
 
-main();
+app.use(express.json());
+
+app.get("/api/blogs", async (req, res) => {
+  const blogs = await Blog.findAll();
+  console.log(JSON.stringify(blogs));
+  res.json(blogs);
+});
+
+app.post("/api/blogs", async (req, res) => {
+  console.log(req.body);
+  const blog = await Blog.create(req.body);
+  res.json(blog);
+});
+
+app.delete("/api/blogs/:id", async (req, res) => {
+  const blog = await Blog.findByPk(req.params.id);
+  if (blog) {
+    console.log(blog);
+    const deletedResult = await blog.destroy();
+
+    res.status(204).end();
+  } else {
+    res.status(404).end();
+  }
+});
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
