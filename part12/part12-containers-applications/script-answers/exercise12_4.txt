@@ -1,0 +1,508 @@
+Script started on Sat Feb 22 09:06:33 2025
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookPro.lan/Users/shu/helsinki/helsinki/part12/part12-containers-applications[0m[27m[24m[J(base) shu@MacBookPro part12-containers-applications % [K[?2004hcat typescript[14Dls            [12Dscriptls    docker image pull hello-world[K[A[51Cls[K[1B[K[A[57Cscriptls    cat typescript[14D              [14Dp ddocker ps[?2004l[1BCONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookPro.lan/Users/shu/helsinki/helsinki/part12/part12-containers-applications[0m[27m[24m[J(base) shu@MacBookPro part12-containers-applications % [K[?2004hddocker ps -a[?2004l
+CONTAINER ID   IMAGE            COMMAND                  CREATED             STATUS                     PORTS     NAMES
+2ce9cb04089c   ubuntu           "bash"                   About an hour ago   Exited (0) 2 minutes ago             romantic_babbage
+3d889633e855   redis            "docker-entrypoint.s…"   11 hours ago        Exited (0) 9 hours ago               elastic_morse
+8ee808fdc0eb   redis            "docker-entrypoint.s…"   11 hours ago        Exited (0) 11 hours ago              adoring_euler
+1ab6027f9472   redis            "docker-entrypoint.s…"   11 hours ago        Exited (0) 11 hours ago              nice_hawking
+f209c9d07907   redis            "docker-entrypoint.s…"   12 hours ago        Exited (0) 11 hours ago              charming_spence
+ecb427fd3f4d   redis            "docker-entrypoint.s…"   12 hours ago        Exited (0) 12 hours ago              objective_torvalds
+2b3b36a7057f   hello-world      "/hello"                 12 hours ago        Exited (0) 12 hours ago              stupefied_diffie
+9cb10dbcccbc   postgres:10.10   "docker-entrypoint.s…"   13 hours ago        Exited (0) 12 hours ago              eager_wiles
+8f96b9fcd3c7   hello-world      "/hello"                 34 hours ago        Exited (0) 34 hours ago              stoic_lederberg
+9fec884f612b   postgres:9.6     "docker-entrypoint.s…"   34 hours ago        Exited (1) 34 hours ago              nifty_hertz
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookPro.lan/Users/shu/helsinki/helsinki/part12/part12-containers-applications[0m[27m[24m[J(base) shu@MacBookPro part12-containers-applications % [K[?2004hddid docker start [7m2ce9cb04089c[27m [K[A[68C[27m2[27mc[27me[27m9[27mc[27mb[27m0[27m4[27m0[27m8[27m9[27mc [K[?2004l
+2ce9cb04089c
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookPro.lan/Users/shu/helsinki/helsinki/part12/part12-containers-applications[0m[27m[24m[J(base) shu@MacBookPro part12-containers-applications % [K[?2004hddocker kill [7m2ce9cb04089c[27m[12D[27m2[27mc[27me[27m9[27mc[27mb[27m0[27m4[27m0[27m8[27m9[27mc[?2004l
+2ce9cb04089c
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookPro.lan/Users/shu/helsinki/helsinki/part12/part12-containers-applications[0m[27m[24m[J(base) shu@MacBookPro part12-containers-applications % [K[?2004hddocke r start -i [7m2ce9cb040[7m8[7m9c[27m[K[A[68C[27m2[27mc[27me[27m9[27mc[27mb[27m0[27m4[27m08[27m9[27mc[?2004l
+[?2004h]0;root@2ce9cb04089c: /root@2ce9cb04089c:/# apt= -get -y install curl
+[?2004lReading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 6%Reading package lists... 6%Reading package lists... 72%Reading package lists... 72%Reading package lists... 73%Reading package lists... 73%Reading package lists... 74%Reading package lists... 74%Reading package lists... 78%Reading package lists... 78%Reading package lists... 84%Reading package lists... 84%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 91%Reading package lists... 91%Reading package lists... 96%Reading package lists... 96%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree... Done
+Reading state information... 0% Reading state information... 98%Reading state information... Done
+The following additional packages will be installed:
+  ca-certificates krb5-locales libbrotli1 libcurl4t64 libgssapi-krb5-2
+  libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-common libldap2
+  libnghttp2-14 libpsl5t64 librtmp1 libsasl2-2 libsasl2-modules
+  libsasl2-modules-db libssh-4 libssl3t64 openssl publicsuffix
+Suggested packages:
+  krb5-doc krb5-user libsasl2-modules-gssapi-mit
+  | libsasl2-modules-gssapi-heimdal libsasl2-modules-ldap libsasl2-modules-otp
+  libsasl2-modules-sql
+The following NEW packages will be installed:
+  ca-certificates curl krb5-locales libbrotli1 libcurl4t64 libgssapi-krb5-2
+  libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-common libldap2
+  libnghttp2-14 libpsl5t64 librtmp1 libsasl2-2 libsasl2-modules
+  libsasl2-modules-db libssh-4 openssl publicsuffix
+The following packages will be upgraded:
+  libssl3t64
+1 upgraded, 21 newly installed, 0 to remove and 17 not upgraded.
+Need to get 5350 kB of archives.
+After this operation, 9887 kB of additional disk space will be used.
+0% [Working]0% [Waiting for headers]                        Get:1 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libssl3t64 arm64 3.0.13-0ubuntu3.5 [1797 kB]
+0% [1 libssl3t64 13.4 kB/1797 kB 1%]1% [1 libssl3t64 76.1 kB/1797 kB 4%]4% [1 libssl3t64 278 kB/1797 kB 15%]4% [1 libssl3t64 278 kB/1797 kB 15%]4% [1 libssl3t64 278 kB/1797 kB 15%]4% [1 libssl3t64 278 kB/1797 kB 15%]4% [1 libssl3t64 278 kB/1797 kB 15%]4% [1 libssl3t64 289 kB/1797 kB 16%]6% [1 libssl3t64 401 kB/1797 kB 22%]6% [1 libssl3t64 413 kB/1797 kB 23%]6% [1 libssl3t64 425 kB/1797 kB 24%]6% [1 libssl3t64 427 kB/1797 kB 24%]                         69.5 kB/s 1min 10s8% [1 libssl3t64 528 kB/1797 kB 29%]                          69.5 kB/s 1min 9s8% [1 libssl3t64 533 kB/1797 kB 30%]                          69.5 kB/s 1min 9s8% [1 libssl3t64 540 kB/1797 kB 30%]                          69.5 kB/s 1min 9s8% [1 libssl3t64 544 kB/1797 kB 30%]                          69.5 kB/s 1min 9s8% [1 libssl3t64 544 kB/1797 kB 30%]                          69.5 kB/s 1min 9s8% [1 libssl3t64 544 kB/1797 kB 30%]                          69.5 kB/s 1min 9s8% [1 libssl3t64 544 kB/1797 kB 30%]                          69.5 kB/s 1min 9s8% [1 libssl3t64 544 kB/1797 kB 30%]                          69.5 kB/s 1min 9s8% [1 libssl3t64 544 kB/1797 kB 30%]                          69.5 kB/s 1min 9s8% [1 libssl3t64 544 kB/1797 kB 30%]                          69.5 kB/s 1min 9s8% [1 libssl3t64 544 kB/1797 kB 30%]                          69.5 kB/s 1min 9s8% [1 libssl3t64 544 kB/1797 kB 30%]                          19.4 kB/s 4min 8s8% [1 libssl3t64 544 kB/1797 kB 30%]                          19.4 kB/s 4min 8s8% [1 libssl3t64 544 kB/1797 kB 30%]                          19.4 kB/s 4min 8s8% [1 libssl3t64 544 kB/1797 kB 30%]                          19.4 kB/s 4min 8s8% [1 libssl3t64 544 kB/1797 kB 30%]                          19.4 kB/s 4min 8s8% [1 libssl3t64 544 kB/1797 kB 30%]                          19.4 kB/s 4min 8s8% [1 libssl3t64 544 kB/1797 kB 30%]                          19.4 kB/s 4min 8s8% [1 libssl3t64 544 kB/1797 kB 30%]                          19.4 kB/s 4min 8s8% [1 libssl3t64 544 kB/1797 kB 30%]                          19.4 kB/s 4min 8s8% [1 libssl3t64 544 kB/1797 kB 30%]                          19.4 kB/s 4min 8s8% [1 libssl3t64 544 kB/1797 kB 30%]                          19.4 kB/s 4min 8s8% [1 libssl3t64 544 kB/1797 kB 30%]                          19.4 kB/s 4min 8s8% [1 libssl3t64 549 kB/1797 kB 31%]                       900 B/s 1h 28min 53s8% [1 libssl3t64 551 kB/1797 kB 31%]                       900 B/s 1h 28min 52s8% [1 libssl3t64 551 kB/1797 kB 31%]                       900 B/s 1h 28min 52s8% [1 libssl3t64 552 kB/1797 kB 31%]                       900 B/s 1h 28min 50s8% [1 libssl3t64 552 kB/1797 kB 31%]                       900 B/s 1h 28min 50s8% [1 libssl3t64 552 kB/1797 kB 31%]                       900 B/s 1h 28min 50s8% [1 libssl3t64 552 kB/1797 kB 31%]                       900 B/s 1h 28min 50s8% [1 libssl3t64 552 kB/1797 kB 31%]                       900 B/s 1h 28min 50s8% [1 libssl3t64 552 kB/1797 kB 31%]                       900 B/s 1h 28min 50s8% [1 libssl3t64 552 kB/1797 kB 31%]                       900 B/s 1h 28min 50s8% [1 libssl3t64 552 kB/1797 kB 31%]                       900 B/s 1h 28min 50s8% [1 libssl3t64 552 kB/1797 kB 31%]                       900 B/s 1h 28min 50s8% [1 libssl3t64 552 kB/1797 kB 31%]                        449 B/s 2h 58min 4s8% [1 libssl3t64 552 kB/1797 kB 31%]                        449 B/s 2h 58min 4s8% [1 libssl3t64 552 kB/1797 kB 31%]                        449 B/s 2h 58min 4s8% [1 libssl3t64 552 kB/1797 kB 31%]                        449 B/s 2h 58min 4s8% [1 libssl3t64 552 kB/1797 kB 31%]                        449 B/s 2h 58min 4s8% [1 libssl3t64 552 kB/1797 kB 31%]                        449 B/s 2h 58min 4s8% [1 libssl3t64 552 kB/1797 kB 31%]                        449 B/s 2h 58min 4s8% [1 libssl3t64 552 kB/1797 kB 31%]                        449 B/s 2h 58min 4s8% [1 libssl3t64 552 kB/1797 kB 31%]                        449 B/s 2h 58min 4s8% [1 libssl3t64 552 kB/1797 kB 31%]                        449 B/s 2h 58min 4s8% [1 libssl3t64 552 kB/1797 kB 31%]                        449 B/s 2h 58min 4s8% [1 libssl3t64 552 kB/1797 kB 31%]                        449 B/s 2h 58min 4s                                                                               8% [1 libssl3t64 552 kB/1797 kB 31%]8% [1 libssl3t64 552 kB/1797 kB 31%]8% [1 libssl3t64 552 kB/1797 kB 31%]8% [1 libssl3t64 552 kB/1797 kB 31%]8% [1 libssl3t64 563 kB/1797 kB 31%]12% [1 libssl3t64 789 kB/1797 kB 44%]16% [1 libssl3t64 1062 kB/1797 kB 59%]20% [1 libssl3t64 1361 kB/1797 kB 76%]25% [1 libssl3t64 1705 kB/1797 kB 95%]                                      28% [Working]             Get:2 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 openssl arm64 3.0.13-0ubuntu3.5 [984 kB]
+28% [2 openssl 10.6 kB/984 kB 1%]34% [2 openssl 386 kB/984 kB 39%]39% [2 openssl 781 kB/984 kB 79%]                                 43% [Waiting for headers]                         Get:3 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 ca-certificates all 20240203 [159 kB]
+43% [3 ca-certificates 5204 B/159 kB 3%]                                        Get:4 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 krb5-locales all 1.20.1-6ubuntu2.4 [14.3 kB]
+                                        47% [4 krb5-locales 2728 B/14.3 kB 19%]                                       48% [Waiting for headers]                         Get:5 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libkrb5support0 arm64 1.20.1-6ubuntu2.4 [34.3 kB]
+48% [5 libkrb5support0 4511 B/34.3 kB 13%]                                          49% [Waiting for headers]                         Get:6 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libk5crypto3 arm64 1.20.1-6ubuntu2.4 [85.8 kB]
+49% [6 libk5crypto3 13.6 kB/85.8 kB 16%]                                        51% [Waiting for headers]                         Get:7 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libkeyutils1 arm64 1.6.3-3build1 [9654 B]
+51% [7 libkeyutils1 3954 B/9654 B 41%]                                      52% [Waiting for headers]                         Get:8 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libkrb5-3 arm64 1.20.1-6ubuntu2.4 [349 kB]
+53% [8 libkrb5-3 837 B/349 kB 0%]                                 Get:9 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libgssapi-krb5-2 arm64 1.20.1-6ubuntu2.4 [142 kB]
+59% [9 libgssapi-krb5-2 7789 B/142 kB 5%]                           456 kB/s 4s62% [Waiting for headers]                                           456 kB/s 3s                                                                               Get:10 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libnghttp2-14 arm64 1.59.0-1ubuntu0.2 [74.5 kB]
+62% [10 libnghttp2-14 10.9 kB/74.5 kB 15%]                          456 kB/s 3s64% [Waiting for headers]                                           456 kB/s 3s                                                                               Get:11 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libpsl5t64 arm64 0.21.2-1.1build1 [57.4 kB]
+64% [11 libpsl5t64 196 B/57.4 kB 0%]                                456 kB/s 3s65% [Connecting to ports.ubuntu.com]                                456 kB/s 3s                                                                               Get:12 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 publicsuffix all 20231001.0357-0.1 [129 kB]
+66% [12 publicsuffix 13.4 kB/129 kB 10%]                            456 kB/s 3s67% [12 publicsuffix 96.6 kB/129 kB 75%]                            456 kB/s 3s68% [Working]                                                       456 kB/s 3s                                                                               Get:13 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libbrotli1 arm64 1.1.0-2build2 [339 kB]
+68% [13 libbrotli1 2445 B/339 kB 1%]                                456 kB/s 3s74% [Waiting for headers]                                           456 kB/s 2s                                                                               Get:14 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libsasl2-modules-db arm64 2.1.28+dfsg1-5ubuntu3.1 [21.6 kB]
+75% [14 libsasl2-modules-db 21.5 kB/21.6 kB 100%]                   456 kB/s 2s                                                                               Get:15 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libsasl2-2 arm64 2.1.28+dfsg1-5ubuntu3.1 [54.7 kB]
+76% [15 libsasl2-2 9548 B/54.7 kB 17%]                              456 kB/s 2s                                                                               Get:16 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libldap2 arm64 2.6.7+dfsg-1~exp1ubuntu8.2 [194 kB]
+77% [16 libldap2 13.6 kB/194 kB 7%]                                 456 kB/s 2s81% [Waiting for headers]                                           456 kB/s 1s                                                                               Get:17 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 librtmp1 arm64 2.4+20151223.gitfa8646d.1-2build7 [57.8 kB]
+81% [17 librtmp1 4735 B/57.8 kB 8%]                                 456 kB/s 1s83% [Waiting for headers]                                           456 kB/s 1s                                                                               Get:18 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libssh-4 arm64 0.10.6-2build2 [189 kB]
+83% [18 libssh-4 2572 B/189 kB 1%]                                  456 kB/s 1s87% [Waiting for headers]                                           456 kB/s 1s                                                                               Get:19 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libcurl4t64 arm64 8.5.0-2ubuntu10.6 [333 kB]
+87% [19 libcurl4t64 207 B/333 kB 0%]                                456 kB/s 1s92% [Waiting for headers]                                           456 kB/s 0s                                                                               Get:20 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 curl arm64 8.5.0-2ubuntu10.6 [222 kB]
+93% [20 curl 7421 B/222 kB 3%]                                      456 kB/s 0s                                                                               Get:21 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libldap-common all 2.6.7+dfsg-1~exp1ubuntu8.2 [31.7 kB]
+97% [21 libldap-common 16.4 kB/31.7 kB 52%]                         456 kB/s 0s98% [Waiting for headers]                                           456 kB/s 0s                                                                               Get:22 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libsasl2-modules arm64 2.1.28+dfsg1-5ubuntu3.1 [69.6 kB]
+98% [22 libsasl2-modules 13.0 kB/69.6 kB 19%]                       456 kB/s 0s100% [Working]                                                      456 kB/s 0s                                                                               Fetched 5350 kB in 39s (138 kB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4451 files and directories currently installed.)
+Preparing to unpack .../libssl3t64_3.0.13-0ubuntu3.5_arm64.deb ...
+Unpacking libssl3t64:arm64 (3.0.13-0ubuntu3.5) over (3.0.13-0ubuntu3.4) ...
+Setting up libssl3t64:arm64 (3.0.13-0ubuntu3.5) ...
+Selecting previously unselected package openssl.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4451 files and directories currently installed.)
+Preparing to unpack .../00-openssl_3.0.13-0ubuntu3.5_arm64.deb ...
+Unpacking openssl (3.0.13-0ubuntu3.5) ...
+Selecting previously unselected package ca-certificates.
+Preparing to unpack .../01-ca-certificates_20240203_all.deb ...
+Unpacking ca-certificates (20240203) ...
+Selecting previously unselected package krb5-locales.
+Preparing to unpack .../02-krb5-locales_1.20.1-6ubuntu2.4_all.deb ...
+Unpacking krb5-locales (1.20.1-6ubuntu2.4) ...
+Selecting previously unselected package libkrb5support0:arm64.
+Preparing to unpack .../03-libkrb5support0_1.20.1-6ubuntu2.4_arm64.deb ...
+Unpacking libkrb5support0:arm64 (1.20.1-6ubuntu2.4) ...
+Selecting previously unselected package libk5crypto3:arm64.
+Preparing to unpack .../04-libk5crypto3_1.20.1-6ubuntu2.4_arm64.deb ...
+Unpacking libk5crypto3:arm64 (1.20.1-6ubuntu2.4) ...
+Selecting previously unselected package libkeyutils1:arm64.
+Preparing to unpack .../05-libkeyutils1_1.6.3-3build1_arm64.deb ...
+Unpacking libkeyutils1:arm64 (1.6.3-3build1) ...
+Selecting previously unselected package libkrb5-3:arm64.
+Preparing to unpack .../06-libkrb5-3_1.20.1-6ubuntu2.4_arm64.deb ...
+Unpacking libkrb5-3:arm64 (1.20.1-6ubuntu2.4) ...
+Selecting previously unselected package libgssapi-krb5-2:arm64.
+Preparing to unpack .../07-libgssapi-krb5-2_1.20.1-6ubuntu2.4_arm64.deb ...
+Unpacking libgssapi-krb5-2:arm64 (1.20.1-6ubuntu2.4) ...
+Selecting previously unselected package libnghttp2-14:arm64.
+Preparing to unpack .../08-libnghttp2-14_1.59.0-1ubuntu0.2_arm64.deb ...
+Unpacking libnghttp2-14:arm64 (1.59.0-1ubuntu0.2) ...
+Selecting previously unselected package libpsl5t64:arm64.
+Preparing to unpack .../09-libpsl5t64_0.21.2-1.1build1_arm64.deb ...
+Unpacking libpsl5t64:arm64 (0.21.2-1.1build1) ...
+Selecting previously unselected package publicsuffix.
+Preparing to unpack .../10-publicsuffix_20231001.0357-0.1_all.deb ...
+Unpacking publicsuffix (20231001.0357-0.1) ...
+Selecting previously unselected package libbrotli1:arm64.
+Preparing to unpack .../11-libbrotli1_1.1.0-2build2_arm64.deb ...
+Unpacking libbrotli1:arm64 (1.1.0-2build2) ...
+Selecting previously unselected package libsasl2-modules-db:arm64.
+Preparing to unpack .../12-libsasl2-modules-db_2.1.28+dfsg1-5ubuntu3.1_arm64.deb ...
+Unpacking libsasl2-modules-db:arm64 (2.1.28+dfsg1-5ubuntu3.1) ...
+Selecting previously unselected package libsasl2-2:arm64.
+Preparing to unpack .../13-libsasl2-2_2.1.28+dfsg1-5ubuntu3.1_arm64.deb ...
+Unpacking libsasl2-2:arm64 (2.1.28+dfsg1-5ubuntu3.1) ...
+Selecting previously unselected package libldap2:arm64.
+Preparing to unpack .../14-libldap2_2.6.7+dfsg-1~exp1ubuntu8.2_arm64.deb ...
+Unpacking libldap2:arm64 (2.6.7+dfsg-1~exp1ubuntu8.2) ...
+Selecting previously unselected package librtmp1:arm64.
+Preparing to unpack .../15-librtmp1_2.4+20151223.gitfa8646d.1-2build7_arm64.deb ...
+Unpacking librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2build7) ...
+Selecting previously unselected package libssh-4:arm64.
+Preparing to unpack .../16-libssh-4_0.10.6-2build2_arm64.deb ...
+Unpacking libssh-4:arm64 (0.10.6-2build2) ...
+Selecting previously unselected package libcurl4t64:arm64.
+Preparing to unpack .../17-libcurl4t64_8.5.0-2ubuntu10.6_arm64.deb ...
+Unpacking libcurl4t64:arm64 (8.5.0-2ubuntu10.6) ...
+Selecting previously unselected package curl.
+Preparing to unpack .../18-curl_8.5.0-2ubuntu10.6_arm64.deb ...
+Unpacking curl (8.5.0-2ubuntu10.6) ...
+Selecting previously unselected package libldap-common.
+Preparing to unpack .../19-libldap-common_2.6.7+dfsg-1~exp1ubuntu8.2_all.deb ...
+Unpacking libldap-common (2.6.7+dfsg-1~exp1ubuntu8.2) ...
+Selecting previously unselected package libsasl2-modules:arm64.
+Preparing to unpack .../20-libsasl2-modules_2.1.28+dfsg1-5ubuntu3.1_arm64.deb ...
+Unpacking libsasl2-modules:arm64 (2.1.28+dfsg1-5ubuntu3.1) ...
+Setting up libkeyutils1:arm64 (1.6.3-3build1) ...
+Setting up libbrotli1:arm64 (1.1.0-2build2) ...
+Setting up libsasl2-modules:arm64 (2.1.28+dfsg1-5ubuntu3.1) ...
+Setting up libpsl5t64:arm64 (0.21.2-1.1build1) ...
+Setting up libnghttp2-14:arm64 (1.59.0-1ubuntu0.2) ...
+Setting up krb5-locales (1.20.1-6ubuntu2.4) ...
+Setting up libldap-common (2.6.7+dfsg-1~exp1ubuntu8.2) ...
+Setting up libkrb5support0:arm64 (1.20.1-6ubuntu2.4) ...
+Setting up libsasl2-modules-db:arm64 (2.1.28+dfsg1-5ubuntu3.1) ...
+Setting up librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2build7) ...
+Setting up libk5crypto3:arm64 (1.20.1-6ubuntu2.4) ...
+Setting up libsasl2-2:arm64 (2.1.28+dfsg1-5ubuntu3.1) ...
+Setting up libkrb5-3:arm64 (1.20.1-6ubuntu2.4) ...
+Setting up openssl (3.0.13-0ubuntu3.5) ...
+Setting up publicsuffix (20231001.0357-0.1) ...
+Setting up libldap2:arm64 (2.6.7+dfsg-1~exp1ubuntu8.2) ...
+Setting up ca-certificates (20240203) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/aarch64-linux-gnu/perl/5.38.2 /usr/local/share/perl/5.38.2 /usr/lib/aarch64-linux-gnu/perl5/5.38 /usr/share/perl5 /usr/lib/aarch64-linux-gnu/perl-base /usr/lib/aarch64-linux-gnu/perl/5.38 /usr/share/perl/5.38 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8.)
+debconf: falling back to frontend: Teletype
+Updating certificates in /etc/ssl/certs...
+146 added, 0 removed; done.
+Setting up libgssapi-krb5-2:arm64 (1.20.1-6ubuntu2.4) ...
+Setting up libssh-4:arm64 (0.10.6-2build2) ...
+Setting up libcurl4t64:arm64 (8.5.0-2ubuntu10.6) ...
+Setting up curl (8.5.0-2ubuntu10.6) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.3) ...
+Processing triggers for ca-certificates (20240203) ...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+[?2004h]0;root@2ce9cb04089c: /root@2ce9cb04089c:/# [7mcurl -sL https://deb.nodesource.com/setup_20.x | bash[27m
+[7mapt install -y nodejs[27m[Acurl -sL https://deb.nodesource.com/setup_20.x | bash
+apt install -y nodejs
+[?2004l[38;5;79m2025-02-22 17:11:32 - Installing pre-requisites[0m
+0% [Working]            Hit:1 http://ports.ubuntu.com/ubuntu-ports noble InRelease
+0% [Waiting for headers]0% [Waiting for headers]                        Get:2 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease [126 kB]
+0% [2 InRelease 13.3 kB/126 kB 11%]                                   0% [2 InRelease 106 kB/126 kB 84%]                                  0% [Waiting for headers]0% [Waiting for headers]                        Hit:3 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease
+                        0% [Working]0% [Waiting for headers]                        Hit:4 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease
+                        0% [Working]100% [Working]              Fetched 126 kB in 1s (87.5 kB/s)
+Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 6%Reading package lists... 6%Reading package lists... 72%Reading package lists... 72%Reading package lists... 73%Reading package lists... 73%Reading package lists... 74%Reading package lists... 74%Reading package lists... 78%Reading package lists... 78%Reading package lists... 84%Reading package lists... 84%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 91%Reading package lists... 91%Reading package lists... 96%Reading package lists... 96%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 6%Reading package lists... 6%Reading package lists... 72%Reading package lists... 72%Reading package lists... 73%Reading package lists... 73%Reading package lists... 74%Reading package lists... 74%Reading package lists... 78%Reading package lists... 78%Reading package lists... 84%Reading package lists... 84%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 91%Reading package lists... 91%Reading package lists... 96%Reading package lists... 96%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree... Done
+Reading state information... 0% Reading state information... 4%Reading state information... Done
+ca-certificates is already the newest version (20240203).
+ca-certificates set to manually installed.
+curl is already the newest version (8.5.0-2ubuntu10.6).
+The following additional packages will be installed:
+  adduser dirmngr gnupg-l10n gnupg-utils gpg gpg-agent gpg-wks-client gpgconf
+  gpgsm keyboxd libksba8 libreadline8t64 libsqlite3-0 pinentry-curses
+  readline-common
+Suggested packages:
+  liblocale-gettext-perl perl cron quota ecryptfs-utils dbus-user-session
+  libpam-systemd pinentry-gnome3 tor parcimonie xloadimage gpg-wks-server
+  scdaemon pinentry-doc readline-doc
+The following NEW packages will be installed:
+  adduser apt-transport-https dirmngr gnupg gnupg-l10n gnupg-utils gpg
+  gpg-agent gpg-wks-client gpgconf gpgsm keyboxd libksba8 libreadline8t64
+  libsqlite3-0 pinentry-curses readline-common
+0 upgraded, 17 newly installed, 0 to remove and 17 not upgraded.
+Need to get 3261 kB of archives.
+After this operation, 9023 kB of additional disk space will be used.
+0% [Working]            Get:1 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 adduser all 3.137ubuntu1 [101 kB]
+0% [1 adduser 5173 B/101 kB 5%]2% [1 adduser 87.0 kB/101 kB 86%]                                 4% [Working]            Get:2 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 readline-common all 8.2-4build1 [56.5 kB]
+4% [2 readline-common 13.4 kB/56.5 kB 24%]                                          6% [Waiting for headers]                        Get:3 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libreadline8t64 arm64 8.2-4build1 [153 kB]
+6% [3 libreadline8t64 2968 B/153 kB 2%]                                       11% [Waiting for headers]                         Get:4 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libsqlite3-0 arm64 3.45.1-1ubuntu2.1 [703 kB]
+12% [4 libsqlite3-0 16.1 kB/703 kB 2%]                                      30% [Waiting for headers]                         Get:5 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 apt-transport-https all 2.7.14build2 [3974 B]
+                         Get:6 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 gpgconf arm64 2.4.4-2ubuntu17 [103 kB]
+31% [6 gpgconf 220 B/103 kB 0%]                               35% [Waiting for headers]                         Get:7 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libksba8 arm64 1.6.6-1build1 [119 kB]
+35% [7 libksba8 14.4 kB/119 kB 12%]                                   Get:8 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 dirmngr arm64 2.4.4-2ubuntu17 [316 kB]
+                                   39% [8 dirmngr 1064 B/316 kB 0%]                                48% [Waiting for headers]                         Get:9 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 gnupg-utils arm64 2.4.4-2ubuntu17 [106 kB]
+48% [9 gnupg-utils 36.5 kB/106 kB 34%]                                      51% [Waiting for headers]                         Get:10 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 gpg arm64 2.4.4-2ubuntu17 [548 kB]
+52% [10 gpg 16.4 kB/548 kB 3%]                              66% [Waiting for headers]                         Get:11 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 pinentry-curses arm64 1.2.1-3ubuntu5 [34.3 kB]
+66% [11 pinentry-curses 9588 B/34.3 kB 28%]                                           68% [Working]             Get:12 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 gpg-agent arm64 2.4.4-2ubuntu17 [221 kB]
+68% [12 gpg-agent 13.4 kB/221 kB 6%]70% [12 gpg-agent 87.0 kB/221 kB 39%]                                     75% [Working]             Get:13 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 gpgsm arm64 2.4.4-2ubuntu17 [225 kB]
+75% [13 gpgsm 2445 B/225 kB 1%]                               81% [Waiting for headers]                         Get:14 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 keyboxd arm64 2.4.4-2ubuntu17 [76.0 kB]
+81% [14 keyboxd 7897 B/76.0 kB 10%]                                   84% [Waiting for headers]                         Get:15 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 gnupg all 2.4.4-2ubuntu17 [359 kB]
+85% [15 gnupg 10.7 kB/359 kB 3%]                                94% [Waiting for headers]                         Get:16 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 gnupg-l10n all 2.4.4-2ubuntu17 [65.9 kB]
+95% [16 gnupg-l10n 7792 B/65.9 kB 12%]                                      97% [Waiting for headers]                         Get:17 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 gpg-wks-client arm64 2.4.4-2ubuntu17 [69.7 kB]
+97% [17 gpg-wks-client 6824 B/69.7 kB 10%]                                          100% [Working]              Fetched 3261 kB in 4s (881 kB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package adduser.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5084 files and directories currently installed.)
+Preparing to unpack .../adduser_3.137ubuntu1_all.deb ...
+Unpacking adduser (3.137ubuntu1) ...
+Setting up adduser (3.137ubuntu1) ...
+Selecting previously unselected package readline-common.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5132 files and directories currently installed.)
+Preparing to unpack .../00-readline-common_8.2-4build1_all.deb ...
+Unpacking readline-common (8.2-4build1) ...
+Selecting previously unselected package libreadline8t64:arm64.
+Preparing to unpack .../01-libreadline8t64_8.2-4build1_arm64.deb ...
+Adding 'diversion of /lib/aarch64-linux-gnu/libhistory.so.8 to /lib/aarch64-linux-gnu/libhistory.so.8.usr-is-merged by libreadline8t64'
+Adding 'diversion of /lib/aarch64-linux-gnu/libhistory.so.8.2 to /lib/aarch64-linux-gnu/libhistory.so.8.2.usr-is-merged by libreadline8t64'
+Adding 'diversion of /lib/aarch64-linux-gnu/libreadline.so.8 to /lib/aarch64-linux-gnu/libreadline.so.8.usr-is-merged by libreadline8t64'
+Adding 'diversion of /lib/aarch64-linux-gnu/libreadline.so.8.2 to /lib/aarch64-linux-gnu/libreadline.so.8.2.usr-is-merged by libreadline8t64'
+Unpacking libreadline8t64:arm64 (8.2-4build1) ...
+Selecting previously unselected package libsqlite3-0:arm64.
+Preparing to unpack .../02-libsqlite3-0_3.45.1-1ubuntu2.1_arm64.deb ...
+Unpacking libsqlite3-0:arm64 (3.45.1-1ubuntu2.1) ...
+Selecting previously unselected package apt-transport-https.
+Preparing to unpack .../03-apt-transport-https_2.7.14build2_all.deb ...
+Unpacking apt-transport-https (2.7.14build2) ...
+Selecting previously unselected package gpgconf.
+Preparing to unpack .../04-gpgconf_2.4.4-2ubuntu17_arm64.deb ...
+Unpacking gpgconf (2.4.4-2ubuntu17) ...
+Selecting previously unselected package libksba8:arm64.
+Preparing to unpack .../05-libksba8_1.6.6-1build1_arm64.deb ...
+Unpacking libksba8:arm64 (1.6.6-1build1) ...
+Selecting previously unselected package dirmngr.
+Preparing to unpack .../06-dirmngr_2.4.4-2ubuntu17_arm64.deb ...
+Unpacking dirmngr (2.4.4-2ubuntu17) ...
+Selecting previously unselected package gnupg-utils.
+Preparing to unpack .../07-gnupg-utils_2.4.4-2ubuntu17_arm64.deb ...
+Unpacking gnupg-utils (2.4.4-2ubuntu17) ...
+Selecting previously unselected package gpg.
+Preparing to unpack .../08-gpg_2.4.4-2ubuntu17_arm64.deb ...
+Unpacking gpg (2.4.4-2ubuntu17) ...
+Selecting previously unselected package pinentry-curses.
+Preparing to unpack .../09-pinentry-curses_1.2.1-3ubuntu5_arm64.deb ...
+Unpacking pinentry-curses (1.2.1-3ubuntu5) ...
+Selecting previously unselected package gpg-agent.
+Preparing to unpack .../10-gpg-agent_2.4.4-2ubuntu17_arm64.deb ...
+Unpacking gpg-agent (2.4.4-2ubuntu17) ...
+Selecting previously unselected package gpgsm.
+Preparing to unpack .../11-gpgsm_2.4.4-2ubuntu17_arm64.deb ...
+Unpacking gpgsm (2.4.4-2ubuntu17) ...
+Selecting previously unselected package keyboxd.
+Preparing to unpack .../12-keyboxd_2.4.4-2ubuntu17_arm64.deb ...
+Unpacking keyboxd (2.4.4-2ubuntu17) ...
+Selecting previously unselected package gnupg.
+Preparing to unpack .../13-gnupg_2.4.4-2ubuntu17_all.deb ...
+Unpacking gnupg (2.4.4-2ubuntu17) ...
+Selecting previously unselected package gnupg-l10n.
+Preparing to unpack .../14-gnupg-l10n_2.4.4-2ubuntu17_all.deb ...
+Unpacking gnupg-l10n (2.4.4-2ubuntu17) ...
+Selecting previously unselected package gpg-wks-client.
+Preparing to unpack .../15-gpg-wks-client_2.4.4-2ubuntu17_arm64.deb ...
+Unpacking gpg-wks-client (2.4.4-2ubuntu17) ...
+Setting up libksba8:arm64 (1.6.6-1build1) ...
+Setting up pinentry-curses (1.2.1-3ubuntu5) ...
+Setting up apt-transport-https (2.7.14build2) ...
+Setting up libsqlite3-0:arm64 (3.45.1-1ubuntu2.1) ...
+Setting up gnupg-l10n (2.4.4-2ubuntu17) ...
+Setting up readline-common (8.2-4build1) ...
+Setting up gnupg-utils (2.4.4-2ubuntu17) ...
+Setting up libreadline8t64:arm64 (8.2-4build1) ...
+Setting up gpgconf (2.4.4-2ubuntu17) ...
+Setting up gpg (2.4.4-2ubuntu17) ...
+Setting up gpg-agent (2.4.4-2ubuntu17) ...
+Setting up gpgsm (2.4.4-2ubuntu17) ...
+Setting up dirmngr (2.4.4-2ubuntu17) ...
+Setting up keyboxd (2.4.4-2ubuntu17) ...
+Setting up gnupg (2.4.4-2ubuntu17) ...
+Setting up gpg-wks-client (2.4.4-2ubuntu17) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.3) ...
+0% [Working]            Get:1 https://deb.nodesource.com/node_20.x nodistro InRelease [12.1 kB]
+0% [1 InRelease 7727 B/12.1 kB 64%] [Connecting to ports.ubuntu.com (185.125.19                                                                               0% [Connecting to ports.ubuntu.com (185.125.190.36)]                                                    0% [Waiting for headers]                        Get:2 https://deb.nodesource.com/node_20.x nodistro/main arm64 Packages [10.7 kB]
+0% [2 Packages 2254 B/10.7 kB 21%] [Waiting for headers]                                                        0% [Waiting for headers]0% [2 Packages store 0 B] [Waiting for headers]                                               0% [Waiting for headers]                        Hit:3 http://ports.ubuntu.com/ubuntu-ports noble InRelease
+                        0% [Working]0% [Waiting for headers]                        Hit:4 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease
+                        0% [Working]0% [Waiting for headers]                        Hit:5 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease
+                        0% [Working]0% [Waiting for headers]                        Hit:6 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease
+                        0% [Working]100% [Working]              Fetched 22.8 kB in 1s (25.5 kB/s)
+Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 6%Reading package lists... 6%Reading package lists... 72%Reading package lists... 72%Reading package lists... 73%Reading package lists... 73%Reading package lists... 74%Reading package lists... 74%Reading package lists... 78%Reading package lists... 78%Reading package lists... 84%Reading package lists... 84%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 91%Reading package lists... 91%Reading package lists... 96%Reading package lists... 96%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+[1;34m2025-02-22 17:11:41 - Repository configured successfully.[0m
+[38;5;79m2025-02-22 17:11:41 - To install Node.js, run: apt-get install nodejs -y[0m
+[38;5;79m2025-02-22 17:11:41 - You can use N|solid Runtime as a node.js alternative[0m
+[1;32m2025-02-22 17:11:41 - To install N|solid Runtime, run: apt-get install nsolid -y 
+[0m
+Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 6%Reading package lists... 6%Reading package lists... 72%Reading package lists... 72%Reading package lists... 73%Reading package lists... 73%Reading package lists... 74%Reading package lists... 74%Reading package lists... 78%Reading package lists... 78%Reading package lists... 84%Reading package lists... 84%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 88%Reading package lists... 91%Reading package lists... 91%Reading package lists... 96%Reading package lists... 96%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree... Done
+Reading state information... 0% Reading state information... 2%Reading state information... Done
+The following additional packages will be installed:
+  libexpat1 libpython3-stdlib libpython3.12-minimal libpython3.12-stdlib
+  media-types netbase python3 python3-minimal python3.12 python3.12-minimal
+  tzdata
+Suggested packages:
+  python3-doc python3-tk python3-venv python3.12-venv python3.12-doc binutils
+  binfmt-support
+The following NEW packages will be installed:
+  libexpat1 libpython3-stdlib libpython3.12-minimal libpython3.12-stdlib
+  media-types netbase nodejs python3 python3-minimal python3.12
+  python3.12-minimal tzdata
+0 upgraded, 12 newly installed, 0 to remove and 17 not upgraded.
+Need to get 37.1 MB of archives.
+After this operation, 223 MB of additional disk space will be used.
+[33m0% [Working][0m            Get:1 https://deb.nodesource.com/node_20.x nodistro/main arm64 nodejs arm64 20.18.3-1nodesource1 [30.9 MB]
+[33m0% [Waiting for headers] [1 nodejs 13.2 kB/30.9 MB 0%][0m                                                      Get:2 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libpython3.12-minimal arm64 3.12.3-1ubuntu0.5 [831 kB]
+[33m2% [2 libpython3.12-minimal 13.4 kB/831 kB 2%] [1 nodejs 701 kB/30.9 MB 2%][0m[33m13% [2 libpython3.12-minimal 59.7 kB/831 kB 7%] [1 nodejs 6026 kB/30.9 MB 19%][0m[33m28% [2 libpython3.12-minimal 258 kB/831 kB 31%] [1 nodejs 12.6 MB/30.9 MB 41%][0m[33m38% [2 libpython3.12-minimal 652 kB/831 kB 78%] [1 nodejs 17.1 MB/30.9 MB 55%][0m[33m                                                                              42% [Waiting for headers] [1 nodejs 18.1 MB/30.9 MB 58%][0m                                                        Get:3 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libexpat1 arm64 2.6.1-2ubuntu0.2 [76.4 kB]
+[33m52% [3 libexpat1 1082 B/76.4 kB 1%] [1 nodejs 22.4 MB/30.9 MB 72%][0m[33m                                                                  54% [Waiting for headers] [1 nodejs 22.8 MB/30.9 MB 74%][0m                                                        Get:4 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 python3.12-minimal arm64 3.12.3-1ubuntu0.5 [2254 kB]
+[33m54% [4 python3.12-minimal 3491 B/2254 kB 0%] [1 nodejs 22.8 MB/30.9 MB 74%][0m[33m67% [4 python3.12-minimal 573 kB/2254 kB 25%] [1 nodejs 28.0 MB/30.9 MB 90%][0m[33m                                                                            77% [4 python3.12-minimal 1588 kB/2254 kB 70%][0m[33m                                              80% [Waiting for headers][0m                         Get:5 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 python3-minimal arm64 3.12.3-0ubuntu2 [27.4 kB]
+[33m80% [5 python3-minimal 27.4 kB/27.4 kB 100%][0m[33m                                            82% [Waiting for headers][0m                         Get:6 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 media-types all 10.1.0 [27.5 kB]
+[33m82% [6 media-types 6441 B/27.5 kB 23%][0m[33m                                      84% [Waiting for headers][0m                         Get:7 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 netbase all 6.4 [13.1 kB]
+[33m84% [7 netbase 13.1 kB/13.1 kB 100%][0m[33m                                    85% [Waiting for headers][0m                         Get:8 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 tzdata all 2024b-0ubuntu0.24.04.1 [274 kB]
+[33m85% [8 tzdata 4349 B/274 kB 2%][0m[33m                               87% [Waiting for headers][0m                         Get:9 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libpython3.12-stdlib arm64 3.12.3-1ubuntu0.5 [2037 kB]
+[33m87% [9 libpython3.12-stdlib 0 B/2037 kB 0%][0m[33m                                           94% [Working][0m             Get:10 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 python3.12 arm64 3.12.3-1ubuntu0.5 [651 kB]
+[33m94% [10 python3.12 4445 B/651 kB 1%][0m[33m                                    97% [Waiting for headers][0m                         Get:11 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libpython3-stdlib arm64 3.12.3-0ubuntu2 [10.0 kB]
+[33m97% [11 libpython3-stdlib 2894 B/10.0 kB 29%][0m[33m                                             98% [Waiting for headers][0m                         Get:12 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 python3 arm64 3.12.3-0ubuntu2 [23.0 kB]
+[33m98% [12 python3 8926 B/23.0 kB 39%][0m[33m                                   100% [Working][0m              Fetched 37.1 MB in 4s (8845 kB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+
+7[0;23r8[1ASelecting previously unselected package libpython3.12-minimal:arm64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5366 files and directories currently installed.)
+Preparing to unpack .../libpython3.12-minimal_3.12.3-1ubuntu0.5_arm64.deb ...
+7[24;0f[42m[30mProgress: [  0%][49m[39m [..........................................................] 87[24;0f[42m[30mProgress: [  2%][49m[39m [#.........................................................] 8Unpacking libpython3.12-minimal:arm64 (3.12.3-1ubuntu0.5) ...
+7[24;0f[42m[30mProgress: [  4%][49m[39m [##........................................................] 8Selecting previously unselected package libexpat1:arm64.
+Preparing to unpack .../libexpat1_2.6.1-2ubuntu0.2_arm64.deb ...
+7[24;0f[42m[30mProgress: [  6%][49m[39m [###.......................................................] 8Unpacking libexpat1:arm64 (2.6.1-2ubuntu0.2) ...
+7[24;0f[42m[30mProgress: [  8%][49m[39m [####......................................................] 8Selecting previously unselected package python3.12-minimal.
+Preparing to unpack .../python3.12-minimal_3.12.3-1ubuntu0.5_arm64.deb ...
+7[24;0f[42m[30mProgress: [ 10%][49m[39m [#####.....................................................] 8Unpacking python3.12-minimal (3.12.3-1ubuntu0.5) ...
+7[24;0f[42m[30mProgress: [ 12%][49m[39m [#######...................................................] 8Setting up libpython3.12-minimal:arm64 (3.12.3-1ubuntu0.5) ...
+7[24;0f[42m[30mProgress: [ 14%][49m[39m [########..................................................] 87[24;0f[42m[30mProgress: [ 16%][49m[39m [#########.................................................] 8Setting up libexpat1:arm64 (2.6.1-2ubuntu0.2) ...
+7[24;0f[42m[30mProgress: [ 18%][49m[39m [##########................................................] 87[24;0f[42m[30mProgress: [ 20%][49m[39m [###########...............................................] 8Setting up python3.12-minimal (3.12.3-1ubuntu0.5) ...
+7[24;0f[42m[30mProgress: [ 22%][49m[39m [#############.............................................] 87[24;0f[42m[30mProgress: [ 24%][49m[39m [##############............................................] 8Selecting previously unselected package python3-minimal.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5685 files and directories currently installed.)
+Preparing to unpack .../0-python3-minimal_3.12.3-0ubuntu2_arm64.deb ...
+7[24;0f[42m[30mProgress: [ 27%][49m[39m [###############...........................................] 8Unpacking python3-minimal (3.12.3-0ubuntu2) ...
+7[24;0f[42m[30mProgress: [ 29%][49m[39m [################..........................................] 8Selecting previously unselected package media-types.
+Preparing to unpack .../1-media-types_10.1.0_all.deb ...
+7[24;0f[42m[30mProgress: [ 31%][49m[39m [#################.........................................] 8Unpacking media-types (10.1.0) ...
+7[24;0f[42m[30mProgress: [ 33%][49m[39m [##################........................................] 8Selecting previously unselected package netbase.
+Preparing to unpack .../2-netbase_6.4_all.deb ...
+7[24;0f[42m[30mProgress: [ 35%][49m[39m [####################......................................] 8Unpacking netbase (6.4) ...
+7[24;0f[42m[30mProgress: [ 37%][49m[39m [#####################.....................................] 8Selecting previously unselected package tzdata.
+Preparing to unpack .../3-tzdata_2024b-0ubuntu0.24.04.1_all.deb ...
+7[24;0f[42m[30mProgress: [ 39%][49m[39m [######################....................................] 8Unpacking tzdata (2024b-0ubuntu0.24.04.1) ...
+7[24;0f[42m[30mProgress: [ 41%][49m[39m [#######################...................................] 8Selecting previously unselected package libpython3.12-stdlib:arm64.
+Preparing to unpack .../4-libpython3.12-stdlib_3.12.3-1ubuntu0.5_arm64.deb ...
+7[24;0f[42m[30mProgress: [ 43%][49m[39m [########################..................................] 8Unpacking libpython3.12-stdlib:arm64 (3.12.3-1ubuntu0.5) ...
+7[24;0f[42m[30mProgress: [ 45%][49m[39m [##########################................................] 8Selecting previously unselected package python3.12.
+Preparing to unpack .../5-python3.12_3.12.3-1ubuntu0.5_arm64.deb ...
+7[24;0f[42m[30mProgress: [ 47%][49m[39m [###########################...............................] 8Unpacking python3.12 (3.12.3-1ubuntu0.5) ...
+7[24;0f[42m[30mProgress: [ 49%][49m[39m [############################..............................] 8Selecting previously unselected package libpython3-stdlib:arm64.
+Preparing to unpack .../6-libpython3-stdlib_3.12.3-0ubuntu2_arm64.deb ...
+7[24;0f[42m[30mProgress: [ 51%][49m[39m [#############################.............................] 8Unpacking libpython3-stdlib:arm64 (3.12.3-0ubuntu2) ...
+7[24;0f[42m[30mProgress: [ 53%][49m[39m [##############################............................] 8Setting up python3-minimal (3.12.3-0ubuntu2) ...
+7[24;0f[42m[30mProgress: [ 55%][49m[39m [###############################...........................] 87[24;0f[42m[30mProgress: [ 57%][49m[39m [#################################.........................] 8Selecting previously unselected package python3.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6654 files and directories currently installed.)
+Preparing to unpack .../python3_3.12.3-0ubuntu2_arm64.deb ...
+7[24;0f[42m[30mProgress: [ 59%][49m[39m [##################################........................] 8Unpacking python3 (3.12.3-0ubuntu2) ...
+7[24;0f[42m[30mProgress: [ 61%][49m[39m [###################################.......................] 8Selecting previously unselected package nodejs.
+Preparing to unpack .../nodejs_20.18.3-1nodesource1_arm64.deb ...
+7[24;0f[42m[30mProgress: [ 63%][49m[39m [####################################......................] 8Unpacking nodejs (20.18.3-1nodesource1) ...
+7[24;0f[42m[30mProgress: [ 65%][49m[39m [#####################################.....................] 8Setting up media-types (10.1.0) ...
+7[24;0f[42m[30mProgress: [ 67%][49m[39m [#######################################...................] 87[24;0f[42m[30mProgress: [ 69%][49m[39m [########################################..................] 8Setting up tzdata (2024b-0ubuntu0.24.04.1) ...
+7[24;0f[42m[30mProgress: [ 71%][49m[39m [#########################################.................] 8debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/aarch64-linux-gnu/perl/5.38.2 /usr/local/share/perl/5.38.2 /usr/lib/aarch64-linux-gnu/perl5/5.38 /usr/share/perl5 /usr/lib/aarch64-linux-gnu/perl-base /usr/lib/aarch64-linux-gnu/perl/5.38 /usr/share/perl/5.38 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8.)
+debconf: falling back to frontend: Teletype
+Configuring tzdata
+------------------
+
+Please select the geographic area in which you live. Subsequent configuration
+questions will narrow this down by presenting a list of cities, representing
+the time zones in which they are located.
+
+  1. Africa      4. Arctic    7. Australia  10. Pacific
+  2. America     5. Asia      8. Europe     11. Etc
+  3. Antarctica  6. Atlantic  9. Indian     12. Legacy
+Geographic area: 2
+
+Please select the city or region corresponding to your time zone.
+
+  1. Adak                     79. Juneau
+  2. Anchorage                80. Kentucky/Louisville
+  3. Anguilla                 81. Kentucky/Monticello
+  4. Antigua                  82. Kralendijk
+  5. Araguaina                83. La_Paz
+  6. Argentina/Buenos_Aires   84. Lima
+  7. Argentina/Catamarca      85. Los_Angeles
+  8. Argentina/Cordoba        86. Lower_Princes
+  9. Argentina/Jujuy          87. Maceio
+  10. Argentina/La_Rioja      88. Managua
+  11. Argentina/Mendoza       89. Manaus
+  12. Argentina/Rio_Gallegos  90. Marigot
+  13. Argentina/Salta         91. Martinique
+  14. Argentina/San_Juan      92. Matamoros
+  15. Argentina/San_Luis      93. Mazatlan
+  16. Argentina/Tucuman       94. Menominee
+  17. Argentina/Ushuaia       95. Merida
+  18. Aruba                   96. Metlakatla
+[More] 85
+
+  19. Asuncion                97. Mexico_City
+  20. Atikokan                98. Miquelon
+  21. Atka                    99. Moncton
+  22. Bahia                   100. Monterrey
+  23. Bahia_Banderas          101. Montevideo
+  24. Barbados                102. Montreal
+  25. Belem                   103. Montserrat
+  26. Belize                  104. Nassau
+  27. Blanc-Sablon            105. New_York
+  28. Boa_Vista               106. Nipigon
+  29. Bogota                  107. Nome
+  30. Boise                   108. Noronha
+  31. Cambridge_Bay           109. North_Dakota/Beulah
+  32. Campo_Grande            110. North_Dakota/Center
+  33. Cancun                  111. North_Dakota/New_Salem
+  34. Caracas                 112. Nuuk
+  35. Cayenne                 113. Ojinaga
+  36. Cayman                  114. Panama
+  37. Chicago                 115. Pangnirtung
+  38. Chihuahua               116. Paramaribo
+  39. Ciudad_Juarez           117. Phoenix
+[More] ^[[D^[[C^[[D85
+
+  40. Coral_Harbour           118. Port-au-Prince
+  41. Costa_Rica              119. Port_of_Spain
+  42. Creston                 120. Porto_Acre
+  43. Cuiaba                  121. Porto_Velho
+  44. Curacao                 122. Puerto_Rico
+  45. Danmarkshavn            123. Punta_Arenas
+  46. Dawson                  124. Rainy_River
+  47. Dawson_Creek            125. Rankin_Inlet
+  48. Denver                  126. Recife
+  49. Detroit                 127. Regina
+  50. Dominica                128. Resolute
+  51. Edmonton                129. Rio_Branco
+  52. Eirunepe                130. Santa_Isabel
+  53. El_Salvador             131. Santarem
+  54. Ensenada                132. Santiago
+  55. Fort_Nelson             133. Santo_Domingo
+  56. Fortaleza               134. Sao_Paulo
+  57. Glace_Bay               135. Scoresbysund
+  58. Goose_Bay               136. Shiprock
+  59. Grand_Turk              137. Sitka
+  60. Grenada                 138. St_Barthelemy
+[More] 85.
+
+  61. Guadeloupe              139. St_Johns
+  62. Guatemala               140. St_Kitts
+  63. Guayaquil               141. St_Lucia
+  64. Guyana                  142. St_Thomas
+  65. Halifax                 143. St_Vincent
+  66. Havana                  144. Swift_Current
+  67. Hermosillo              145. Tegucigalpa
+  68. Indiana/Indianapolis    146. Thule
+  69. Indiana/Knox            147. Thunder_Bay
+  70. Indiana/Marengo         148. Tijuana
+  71. Indiana/Petersburg      149. Toronto
+  72. Indiana/Tell_City       150. Tortola
+  73. Indiana/Vevay           151. Vancouver
+  74. Indiana/Vincennes       152. Virgin
+  75. Indiana/Winamac         153. Whitehorse
+  76. Inuvik                  154. Winnipeg
+  77. Iqaluit                 155. Yakutat
+  78. Jamaica                 156. Yellowknife
+Time zone: Los- _Angeles
+
+
+Current default time zone: 'America/Los_Angeles'
+Local time is now:      Sat Feb 22 09:18:00 PST 2025.
+Universal Time is now:  Sat Feb 22 17:18:00 UTC 2025.
+Run 'dpkg-reconfigure tzdata' if you wish to change it.
+
+7[24;0f[42m[30mProgress: [ 73%][49m[39m [##########################################................] 8Setting up netbase (6.4) ...
+7[24;0f[42m[30mProgress: [ 76%][49m[39m [###########################################...............] 87[24;0f[42m[30mProgress: [ 78%][49m[39m [############################################..............] 8Setting up libpython3.12-stdlib:arm64 (3.12.3-1ubuntu0.5) ...
+7[24;0f[42m[30mProgress: [ 80%][49m[39m [##############################################............] 87[24;0f[42m[30mProgress: [ 82%][49m[39m [###############################################...........] 8Setting up python3.12 (3.12.3-1ubuntu0.5) ...
+7[24;0f[42m[30mProgress: [ 84%][49m[39m [################################################..........] 87[24;0f[42m[30mProgress: [ 86%][49m[39m [#################################################.........] 8Setting up libpython3-stdlib:arm64 (3.12.3-0ubuntu2) ...
+7[24;0f[42m[30mProgress: [ 88%][49m[39m [##################################################........] 87[24;0f[42m[30mProgress: [ 90%][49m[39m [####################################################......] 8Setting up python3 (3.12.3-0ubuntu2) ...
+7[24;0f[42m[30mProgress: [ 92%][49m[39m [#####################################################.....] 8running python rtupdate hooks for python3.12...
+running python post-rtupdate hooks for python3.12...
+7[24;0f[42m[30mProgress: [ 94%][49m[39m [######################################################....] 8Setting up nodejs (20.18.3-1nodesource1) ...
+7[24;0f[42m[30mProgress: [ 96%][49m[39m [#######################################################...] 87[24;0f[42m[30mProgress: [ 98%][49m[39m [########################################################..] 8Processing triggers for libc-bin (2.39-0ubuntu8.3) ...
+
+7[0;24r8[1A[J[1;33mW: [0mOperation was interrupted before it could finish[0m
+[?2004h]0;root@2ce9cb04089c: /root@2ce9cb04089c:/# [K
