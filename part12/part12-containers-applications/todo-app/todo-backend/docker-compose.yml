@@ -1,0 +1,6 @@
+services:
+  app:
+    image: homework-12.5
+    build: .
+    ports:
+      - 3000:3000
