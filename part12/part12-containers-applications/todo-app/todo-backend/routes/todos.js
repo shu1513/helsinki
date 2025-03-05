@@ -1,6 +1,7 @@
 const express = require("express");
 const { Todo } = require("../mongo");
 const router = express.Router();
+const redis = require("../redis");
 
 /* GET todos listing. */
 router.get("/", async (_, res) => {
@@ -14,7 +15,24 @@ router.post("/", async (req, res) => {
     text: req.body.text,
     done: false,
   });
+
+  let counter = await redis.getAsync("counter");
+  counter = parseInt(counter) || 0;
+
+  await redis.setAsync("counter", counter + 1);
+
   res.send(todo);
+});
+
+router.get("/statistics", async (req, res) => {
+  try {
+    let counter = await redis.getAsync("counter");
+    counter = parseInt(counter) || 0;
+    res.json({ added_todos: counter });
+  } catch (error) {
+    console.error("Error fetchin data", error);
+    res.status(500).json({ error: "interal server error" });
+  }
 });
 
 const singleRouter = express.Router();
