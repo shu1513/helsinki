@@ -1,0 +1,31 @@
+services:
+  react-app:
+    image: hello-front-dev
+    build:
+      context: ./todo-frontend
+      dockerfile: todo-frontend/dev.Dockerfile
+    volumes:
+      - ./todo-frontend:/usr/src/app
+    ports:
+      - 3120:5173
+    container_name: hello-front-dev
+  nginx:
+    image: nginx:1.20.1
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:80
+    container_name: reverse-proxy
+    depends_on:
+      - react-app
+      - express-app
+  express-app:
+    image: hello-back-dev
+    build:
+      context: ./todo-backend
+      dockerfile: todo-backend/dev.Dockerfile
+    volumes:
+      - ./todo-backend:/usr/src/app
+    ports:
+      - 3121:3000
+    container_name: hello-back-dev
