@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   react-app:
     image: hello-front-dev
@@ -6,9 +8,8 @@ services:
       dockerfile: todo-frontend/dev.Dockerfile
     volumes:
       - ./todo-frontend:/usr/src/app
-    ports:
-      - 3120:5173
     container_name: hello-front-dev
+
   nginx:
     image: nginx:1.20.1
     volumes:
@@ -19,13 +20,23 @@ services:
     depends_on:
       - react-app
       - express-app
+
   express-app:
-    image: hello-back-dev
-    build:
-      context: ./todo-backend
-      dockerfile: todo-backend/dev.Dockerfile
-    volumes:
-      - ./todo-backend:/usr/src/app
-    ports:
-      - 3121:3000
+    extends:
+      file: ./todo-backend/docker-compose.dev.yml
+      service: app
     container_name: hello-back-dev
+
+  mongo:
+    extends:
+      file: ./todo-backend/docker-compose.dev.yml
+      service: mongo
+
+  redis:
+    extends:
+      file: ./todo-backend/docker-compose.dev.yml
+      service: redis
+
+volumes:
+  mongo_data: {}
+  redis_data: {}

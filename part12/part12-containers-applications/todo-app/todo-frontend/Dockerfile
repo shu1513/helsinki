@@ -13,7 +13,7 @@ RUN npm ci
 COPY . .
 
 # Set the environment variable for VITE_BACKEND_URL
-ENV VITE_BACKEND_URL=http://localhost:3000
+ENV VITE_BACKEND_URL=http://localhost:8080/api/
 
 # Run tests (you can make this optional if you want to skip tests for production)
 RUN npm test
